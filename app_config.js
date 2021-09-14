@@ -2,7 +2,7 @@
 const appConfig = {
     navLinks: [
         { id: 1, title: 'home', path: '/' },
-        { id: 3, title: 'test', path: '/test' },
+        { id: 2, title: 'test', path: '/test' },
     ],
     footerText: 'This is the footer',
 }
