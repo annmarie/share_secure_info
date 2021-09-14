@@ -1,5 +1,5 @@
 
-export default function footer() {
+export default function footerComponent() {
   return <>
     <hr />
     <div>{this.footerText}</div>

@@ -1,13 +1,13 @@
+import appConfig from 'app_config'
+import navigationComponent from 'components/navigation-component'
+import footerComponent from 'components/footer-component'
 import testComponent from 'components/test-component'
-import navigation from 'components/navigation'
-import footer from 'components/footer'
-import appConfig from 'config/app_config'
 
 export default function Test(props) {
   return <>
-    {navigation.bind(props)()}
+    {navigationComponent.bind(props)()}
     {testComponent.bind(props)()}
-    {footer.bind(props)()}
+    {footerComponent.bind(props)()}
   </>
 }
 

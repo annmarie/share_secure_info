@@ -1,14 +1,14 @@
-import navigation from 'components/navigation'
-import footer from 'components/footer'
-import appConfig from 'config/app_config'
+import appConfig from 'app_config'
+import navigationComponent from 'components/navigation-component'
+import footerComponent from 'components/footer-component'
 
 export default function Index(props) {
   const homeComponent = () => <h1>home</h1>
 
   return <>
-    {navigation.bind(props)()}
+    {navigationComponent.bind(props)()}
     {homeComponent.bind(props)()}
-    {footer.bind(props)()}
+    {footerComponent.bind(props)()}
   </>
 }
 

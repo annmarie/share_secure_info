@@ -9,7 +9,7 @@ const makeNavLink = (link) => {
     (<li key={id}><Link href={path}>{title}</Link></li>) 
 }
 
-export default function Navigtion() {
+export default function navigtionComponent() {
   return <>
     <nav>
       <ul>
