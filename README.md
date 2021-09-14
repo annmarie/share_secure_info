@@ -15,3 +15,9 @@ npm run dev
 # or
 yarn dev
 ```
+
+Then, visit the developm server:
+
+```
+http://localhost:8080
+```

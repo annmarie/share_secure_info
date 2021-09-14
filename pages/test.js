@@ -12,6 +12,5 @@ export default function Test(props) {
 }
 
 export async function getServerSideProps() {
-  const colors = ['blue', 'red', 'green']
-  return { props: { ...appConfig, colors } }
+  return { props: { ...appConfig } }
 }

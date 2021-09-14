@@ -1,7 +1,7 @@
 import pageHandler from 'utils/page-handler'
 
 const pageRender = (req, res) => {
-  res.cookie('MYCookie', 'THIS IS MY COOKIE!')
+  res.cookie('TestCookie', 'THIS IS MY TEST COOKIE!')
   res.end(res.getHeader('Set-Cookie'))
 }
 
