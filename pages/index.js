@@ -12,14 +12,14 @@ export default function Index(props) {
   const router = useRouter();
   const [pagePath, setPagePath] = useState(_.get(router, 'asPath', ''))
 
-  return <>
+  return <html>
     <Head>
       <title>Share Secure Info</title>
     </Head>
     <NavigationComponent pagePath={pagePath} setPagePath={setPagePath} { ...props } />
     <PageComponent pagePath={pagePath} { ...props } />
     <FooterComponent pagePath={pagePath} { ...props } />
-  </>
+  </html>
 }
 
 export async function getServerSideProps(ctx) {
