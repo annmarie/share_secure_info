@@ -10,7 +10,7 @@ module.exports = (phase, { defaultConfig }) => {
       return {
         fallback: [
           {
-            source: '/:path/',
+            source: '/:path',
             destination: "/",
           },
         ],
