@@ -6,24 +6,24 @@ const fetchData = (apiUrl, parseResp) => {
   return useSWR(apiUrl, fetcher)
 }
 
-const greetingData = () => {
+const GreetingData = () => {
   const { data, err } = fetchData('/api/test-greeting', (res) => res.json())
-  if (err) return 'Something went wrong.' 
-  if (!data) return 'Loading...' 
-  return _.get(data, 'greeting')
+  if (err) return <div>Something went wrong.</div> 
+  if (!data) return <div>Loading...</div>
+  return <div>{_.get(data, 'greeting')}</div>
 };
 
-const cookiesData = () => {
+const CookiesData = () => {
   const { data, err } = fetchData('/api/test-cookies', (res) => res.text())
-  if (err) return 'Something went wrong.' 
-  if (!data) return 'Loading...' 
-  return data
+  if (err) return <div>Something went wrong.</div> 
+  if (!data) return <div>Loading...</div>
+  return <div>{data}</div>
 };
 
 export default function testComponent() {
   return <>
     <h1>test</h1>
-    <div>{greetingData()}</div>
-    <div>{cookiesData()}</div>
+    <GreetingData />
+    <CookiesData />
   </>
 }

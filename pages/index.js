@@ -17,23 +17,35 @@ const makeNavLink = (link, pagePath, setPagePath) => {
 
 const HomeComponent = () => <h1>home</h1>
 
+const NavigationComponent = (props) => {
+  return <> 
+    <nav>
+      <ul>
+        {props.navLinks.map(link => makeNavLink(link, props.pagePath, props.setPagePath))}
+      </ul>
+    </nav>
+  </>
+} 
+
+const FooterComponent = (props) => {
+  return <>
+    <hr />
+    <div>{props.footerText}</div>
+  </>
+}
+
+const PageComponent = (props) => {
+  return (props.pagePath == '/test') ? <TestComponent /> : <HomeComponent />
+}
+
 export default function Index(props) {
   const router = useRouter();
   const [pagePath, setPagePath] = useState(_.get(router, 'asPath', ''))
 
-  let PageComponent = HomeComponent
-  if (pagePath == '/test')
-    PageComponent = TestComponent
-
   return <>
-    <nav>
-      <ul>
-        {props.navLinks.map(link => makeNavLink(link, pagePath, setPagePath))}
-      </ul>
-    </nav>
-    <PageComponent />
-    <hr />
-    <div>{props.footerText}</div>
+    <NavigationComponent pagePath={pagePath} setPagePath={setPagePath} { ...props } />
+    <PageComponent pagePath={pagePath} { ...props } />
+    <FooterComponent pagePath={pagePath} { ...props } />
   </>
 }
 
