@@ -1,12 +1,12 @@
-import { useState } from 'react';
-import { useRouter } from "next/router";
+import { useState } from 'react'
+import { useRouter } from "next/router"
 import Head from 'next/head'
 import _ from 'lodash'
 import appConfig from 'app_config'
 import TestComponent from 'components/test-component'
-import NavigationComponent from 'components/navigation-component';
-import FooterComponent from 'components/footer-component';
-import HomeComponent from "components/home-component";
+import NavigationComponent from 'components/navigation-component'
+import FooterComponent from 'components/footer-component'
+import HomeComponent from "components/home-component"
 
 export default function Index(props) {
   const router = useRouter();
@@ -34,7 +34,7 @@ export async function getServerSideProps(ctx) {
 }
 
 function PageComponent(props) {
-  const path = _.get(props, 'path')
+  const path = _.get(props, 'pagePath')
 
   switch(path) {
     case '/':
