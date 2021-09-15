@@ -6,7 +6,7 @@ const makeNavLink = (link) => {
   const { id, title, path } = link;
 
   return (router.pathname == path ) ? title :
-    (<li key={id}><Link href={path}>{title}</Link></li>) 
+    (<li key={id}><Link href={path}><a>{title}</a></Link></li>) 
 }
 
 export default function navigtionComponent() {
