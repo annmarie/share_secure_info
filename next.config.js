@@ -6,6 +6,16 @@ module.exports = (phase, { defaultConfig }) => {
     env: { // set env vars
       phase
     },
+    async rewrites() {
+      return {
+        fallback: [
+          {
+            source: '/:path/',
+            destination: "/",
+          },
+        ],
+      }
+    },
   };
 
   return _.merge(defaultConfig, newConfig); 

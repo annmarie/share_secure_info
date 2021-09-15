@@ -1,17 +1,49 @@
+import Link from 'next/link'
+import { useRouter } from "next/router";
+import _ from 'lodash'
 import appConfig from 'app_config'
-import navigationComponent from 'components/navigation-component'
-import footerComponent from 'components/footer-component'
+import TestComponent from 'components/test-component'
+import { useState } from 'react';
 
-const homeComponent = () => <h1>home</h1>
+
+const makeNavLink = (link, pagePath, setPagePath) => {
+  const { id, title, path } = link;
+
+  return (pagePath == path) ? title :
+    <li key={id} onClick={(e) => setPagePath(path)} >
+      <Link as={path} href="/"><a>{title}</a></Link>
+    </li>
+}
+
+const HomeComponent = () => <h1>home</h1>
 
 export default function Index(props) {
+  const router = useRouter();
+  const [pagePath, setPagePath] = useState(_.get(router, 'asPath', ''))
+
+  let PageComponent = HomeComponent
+  if (pagePath == '/test')
+    PageComponent = TestComponent
+
   return <>
-    {navigationComponent.bind(props)()}
-    {homeComponent.bind(props)()}
-    {footerComponent.bind(props)()}
+    <nav>
+      <ul>
+        {props.navLinks.map(link => makeNavLink(link, pagePath, setPagePath))}
+      </ul>
+    </nav>
+    <PageComponent />
+    <hr />
+    <div>{props.footerText}</div>
   </>
 }
 
-export async function getServerSideProps() {
+export async function getServerSideProps(ctx) {
+  // validate request url
+  const reqPath = _.get(ctx, 'req.url')
+  const navPaths = appConfig.navLinks.map(navLink => navLink.path)
+  navPaths.push('/_next/data/development/index.json')
+  const validUrl = navPaths.includes(reqPath) ? true : false
+  if (!validUrl) return { notFound: true }
+  // assign page props
   return { props: { ...appConfig } }
 }
