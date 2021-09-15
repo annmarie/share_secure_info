@@ -1,5 +1,6 @@
-import { useRouter } from "next/router";
 import { useState } from 'react';
+import { useRouter } from "next/router";
+import Head from 'next/head'
 import _ from 'lodash'
 import appConfig from 'app_config'
 import TestComponent from 'components/test-component'
@@ -12,6 +13,9 @@ export default function Index(props) {
   const [pagePath, setPagePath] = useState(_.get(router, 'asPath', ''))
 
   return <>
+    <Head>
+      <title>Share Secure Info</title>
+    </Head>
     <NavigationComponent pagePath={pagePath} setPagePath={setPagePath} { ...props } />
     <PageComponent pagePath={pagePath} { ...props } />
     <FooterComponent pagePath={pagePath} { ...props } />
