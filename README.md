@@ -1,5 +1,11 @@
 ## Getting Started
 
+Framework made using:
+https://nextjs.org/docs/getting-started
+
+Requirements:
+    * Redis Server https://www.sitepoint.com/using-redis-node-js/
+
 First, install dependencies
 
 ```bash
