@@ -5,7 +5,7 @@ import _ from 'lodash'
 const makeNavLink = (link, pagePath, setPagePath) => {
   const { id, title, path } = link;
 
-  return (pagePath == path) ? title :
+  return (pagePath == path) ? <li key={id}>{title}</li> :
     <li key={id} onClick={(e) => setPagePath(path)} >
       <Link as={path} href="/"><a>{title}</a></Link>
     </li>
