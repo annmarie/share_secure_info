@@ -1,4 +1,9 @@
 import { serialize } from 'cookie'
+import redis from 'redis'
+
+// middleware redisClient
+const redisClient = redis.createClient();
+redisClient.on('connect', function() { console.log('redis connected!') });
 
 // middleware cookie function
 const cookie = (res, name, value, options = {}) => {
@@ -14,8 +19,9 @@ const cookie = (res, name, value, options = {}) => {
 }
 
 const pageHandler = (handler) => (req, res) => {
-  // Adds `cookie` function on `res.cookie` to set cookies for response
+  // assign to res object
   res.cookie = (name, value, options) => cookie(res, name, value, options)
+  res.redisClient = redisClient
 
   return handler(req, res)
 }
