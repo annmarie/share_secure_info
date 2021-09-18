@@ -11,6 +11,7 @@ import HomeComponent from "components/home-component"
 
 export default function Index(props) {
 
+  // this is simpilar to using componentDidMount
   React.useEffect(() => {
     // this is required for MUI
     // Remove the server-side injected CSS.
@@ -20,27 +21,32 @@ export default function Index(props) {
     }
   }, []);
 
+  // set state hooks for pagePath value
   const router = useRouter();
   const [pagePath, setPagePath] = useState(_.get(router, 'asPath', ''))
+  _.set(props, 'pagePath', pagePath)
+  _.set(props, 'setPagePath', setPagePath)
 
+  // render html page
   return <html>
     <Head>
       <title>Share Secure Info</title>
     </Head>
-    <NavigationComponent pagePath={pagePath} setPagePath={setPagePath} { ...props } />
-    <PageComponent pagePath={pagePath} { ...props } />
-    <FooterComponent pagePath={pagePath} { ...props } />
+    <NavigationComponent { ...props } />
+    <PageComponent { ...props } />
+    <FooterComponent { ...props } />
   </html>
 }
 
 export function getServerSideProps(ctx) {
-  // validate request url
+  // validate request url against the list of nav links from the config
   const reqPath = _.get(ctx, 'req.url')
   const navPaths = appConfig.navLinks.map(navLink => navLink.path)
   // when the user clicks a LINK component
   // this is the value for req.url
   navPaths.push('/_next/data/development/index.json')
   const validUrl = navPaths.includes(reqPath) ? true : false
+  // if no valid url path is found render 404 page
   if (!validUrl) return { notFound: true }
   // pass config data to page props
   return { props: { ...appConfig } }
