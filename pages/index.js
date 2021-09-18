@@ -33,7 +33,7 @@ export default function Index(props) {
   </html>
 }
 
-export async function getServerSideProps(ctx) {
+export function getServerSideProps(ctx) {
   // validate request url
   const reqPath = _.get(ctx, 'req.url')
   const navPaths = appConfig.navLinks.map(navLink => navLink.path)
