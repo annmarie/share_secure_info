@@ -34,11 +34,11 @@ const RedisData = () => {
 };
 
 
-export default function testComponent() {
+export default function testComponent(props) {
   return <>
     <h1>test</h1>
-    <GreetingData />
-    <CookiesData />
-    <RedisData />
+    <GreetingData { ...props } />
+    <CookiesData { ...props } />
+    <RedisData { ...props } />
   </>
 }
