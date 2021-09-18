@@ -1,3 +1,4 @@
+import React from 'react';
 import { useState } from 'react'
 import { useRouter } from "next/router"
 import Head from 'next/head'
@@ -9,6 +10,16 @@ import FooterComponent from 'components/footer-component'
 import HomeComponent from "components/home-component"
 
 export default function Index(props) {
+
+  React.useEffect(() => {
+    // this is required for MUI
+    // Remove the server-side injected CSS.
+    const jssStyles = document.querySelector('#jss-server-side');
+    if (jssStyles) {
+      jssStyles.parentElement.removeChild(jssStyles);
+    }
+  }, []);
+
   const router = useRouter();
   const [pagePath, setPagePath] = useState(_.get(router, 'asPath', ''))
 
