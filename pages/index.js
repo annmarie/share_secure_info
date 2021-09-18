@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { useRouter } from "next/router"
 import Head from 'next/head'
 import _ from 'lodash'
-import appConfig from 'app_config'
+import appConfig from 'app-config'
 import TestComponent from 'components/test-component'
 import NavigationComponent from 'components/navigation-component'
 import FooterComponent from 'components/footer-component'
