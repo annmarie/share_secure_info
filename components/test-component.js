@@ -1,10 +1,5 @@
 import _ from 'lodash'
-import useSWR from 'swr'
-
-const fetchApiData = (apiUrl, parseResp) => {
-  const fetcher = (url) => fetch(url).then(parseResp)
-  return useSWR(apiUrl, fetcher)
-}
+import fetchApiData from 'utils/fetch-api-data'
 
 const GreetingData = () => {
   const url = '/api/test-greeting?name=Randy' 
