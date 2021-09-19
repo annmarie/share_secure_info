@@ -24,22 +24,21 @@ export default function Index(props) {
   // set state hooks for pagePath value
   const router = useRouter();
   const [pagePath, setPagePath] = useState(_.get(router, 'asPath', ''))
-  _.set(props, 'pagePath', pagePath)
-  _.set(props, 'setPagePath', setPagePath)
 
   // render html page
   return <html>
     <Head>
       <title>Share Secure Info</title>
     </Head>
-    <NavigationComponent { ...props } />
-    <PageComponent { ...props } />
-    <FooterComponent { ...props } />
+    <NavigationComponent pagePath={pagePath} setPagePath={setPagePath} { ...props } />
+    <PageComponent pagePath={pagePath} { ...props } />
+    <FooterComponent pagePath={pagePath} { ...props } />
   </html>
 }
 
 export function getServerSideProps(ctx) {
   // validate request url against the list of nav links from the config
+  // a better reg 
   const reqPath = _.get(ctx, 'req.url')
   const navPaths = appConfig.navLinks.map(navLink => navLink.path)
   // when the user clicks a LINK component
