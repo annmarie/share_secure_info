@@ -27,7 +27,7 @@ const cookie = (res, name, value, options = {}) => {
   res.setHeader('Set-Cookie', serialize(name, String(stringValue), options))
 }
 
-const pageHandler = (handler) => (req, res) => {
+const apiPageHandler = (handler) => (req, res) => {
   // assign to res object
   res.cookie = (name, value, options) => cookie(res, name, value, options)
   res.redisClient = redisClient
@@ -35,4 +35,4 @@ const pageHandler = (handler) => (req, res) => {
   return handler(req, res)
 }
 
-export default pageHandler;
+export default apiPageHandler;

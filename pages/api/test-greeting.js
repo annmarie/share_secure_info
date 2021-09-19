@@ -1,4 +1,4 @@
-import pageHandler from 'utils/page-handler'
+import apiPageHandler from 'middleware/api-page-handler'
 import _ from 'lodash'
 
 function pageRender(req, res) {
@@ -6,4 +6,4 @@ function pageRender(req, res) {
   res.status(200).json({ greeting: `Hello ${name}!` })
 }
 
-export default pageHandler(pageRender); 
+export default apiPageHandler(pageRender); 

@@ -1,4 +1,4 @@
-import pageHandler from 'utils/page-handler'
+import apiPageHandler from 'middleware/api-page-handler'
 import _ from 'lodash'
 
 const getRedisKey = async (key, redisClient) => { 
@@ -24,4 +24,4 @@ async function pageRender(req, res) {
   res.status(200).json(output)
 }
 
-export default pageHandler(pageRender); 
+export default apiPageHandler(pageRender); 
