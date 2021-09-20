@@ -4,7 +4,6 @@ import { useRouter } from "next/router"
 import Head from 'next/head'
 import _ from 'lodash'
 import appPageHandler from 'middleware/app-page-handler';
-import appConfig from 'app-config'
 import TestComponent from 'components/test-component'
 import NavigationComponent from 'components/navigation-component'
 import FooterComponent from 'components/footer-component'
@@ -51,15 +50,12 @@ function PageComponent(props) {
 }
 
 // using this instead of `getInitialProps`
-export async function getServerSideProps(ctx) {
-  // middleware - NOT WORKING
-  // this is not quite right 
-  // we might not need middleware to solve our problem
-  // but it would be more correct
-  //await appPageHandler(ctx.req, ctx.res, () => {})
-
+export function getServerSideProps(ctx) {
+  // middleware
+  appPageHandler(ctx.req, ctx.res)
   // validate request url against the list of nav links from the config
   const reqPath = _.get(ctx, 'req.url')
+  const appConfig = ctx.req.appConfig
   const navPaths = appConfig.navLinks.map(navLink => navLink.path)
   // when the user clicks a LINK component
   // this is the value for req.url
