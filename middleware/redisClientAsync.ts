@@ -30,4 +30,3 @@ export async function asyncGetValue (id): Promise<string> {
     redisSetAsync(key, config.cacheExpiration, '');
     return val;
 };
-
