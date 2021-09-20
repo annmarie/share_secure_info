@@ -62,16 +62,21 @@ function PageComponent(props) {
 export function getServerSideProps(ctx) {
   // middleware
   appPageHandler(ctx.req, ctx.res)
+
   // validate request url against the list of nav links from the config
   const reqPath = _.get(ctx, 'req.url')
   const appConfig = ctx.req.appConfig
   const navPaths = appConfig.navLinks.map(navLink => navLink.path)
-  // when the user clicks a LINK component
-  // this is the value for req.url
-  navPaths.push('/_next/data/development/index.json')
+  // if the user clicked a LINK component
+  if (reqPath.match(/\/_next\/data\/.*\/index.json/)) {
+    // add the url as valid 
+    navPaths.push(reqPath)
+  }
   const validUrl = navPaths.includes(reqPath) ? true : false
+
   // if no valid url path is found render 404 page
   if (!validUrl) return { notFound: true }
+
   // pass config data to page props
   return { props: { ...appConfig } }
 }
