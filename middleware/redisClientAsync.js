@@ -15,21 +15,15 @@ const redisSetAsync = promisify(redisClient.setex).bind(redisClient);
 
 const asyncSetValue = (id, value) => {
   const key = `${redisKeyPrefix}-${id}`; 
-  const doc = {
-      value: value,
-      status: 'Current'
-  }
-  redisSetAsync(key, config.cacheExpiration, doc);
+
+  redisSetAsync(key, config.cacheExpiration, value);
 };
 
 const asyncGetValue = id => {
     const key = `${redisKeyPrefix}-${id}`;
     const val = await redisGetAsync(key);
-    const invalidated = {
-        value: '',
-        status: 'Consumed'
-    }
-    redisSetAsync(key, config.cacheExpiration, invalidated);
+
+    redisSetAsync(key, config.cacheExpiration, '');
     return val;
 };
 
