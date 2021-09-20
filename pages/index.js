@@ -1,9 +1,11 @@
-import React from 'react';
+import React from 'react'
 import { useState } from 'react'
 import { useRouter } from "next/router"
 import Head from 'next/head'
 import _ from 'lodash'
-import appPageHandler from 'middleware/app-page-handler';
+import { ThemeProvider } from '@material-ui/core/styles'
+import CssBaseline from '@material-ui/core/CssBaseline'
+import appPageHandler from 'middleware/app-page-handler'
 import TestComponent from 'components/test-component'
 import NavigationComponent from 'components/navigation-component'
 import FooterComponent from 'components/footer-component'
@@ -26,10 +28,17 @@ export default function Index(props) {
   const [pagePath, setPagePath] = useState(_.get(router, 'asPath', ''))
 
   // render html page
+  // ThemeProvider / CssBaseline is an attempt to add MUI
+  // this might not be the right way to do it
   return <html>
     <Head>
       <title>Share Secure Info</title>
     </Head>
+
+    <ThemeProvider>
+      <CssBaseline />
+    </ThemeProvider>
+
     <NavigationComponent pagePath={pagePath} setPagePath={setPagePath} { ...props } />
     <PageComponent pagePath={pagePath} { ...props } />
     <FooterComponent pagePath={pagePath} { ...props } />
