@@ -10,36 +10,40 @@ const connectRedis = () => {
   const password = process.env.REDIS_PASSWORD
   const config = (password) ? { host, port, password } : { host, port }
   const client = redis.createClient(config)
-  return client.on('connect', function() {
+  return client.on('connect', function () {
     console.log(`redis connected ${host}:${port}`)
   })
 }
 const redisClient = connectRedis()
 const redisKeyPrefix = 'MYREDISKEY'
 
-const setValue = (value) => {
+const setValue = async (value) => {
   const id = uuid.v4()
-  const key = `${redisKeyPrefix}-${id}`; 
+  const key = `${redisKeyPrefix}-${id}`;
   const doc = {
-      value: value,
-      status: 'Current'
+    value: value,
+    status: 'Current'
   }
   redisClient.setex(key, 123332, JSON.stringify(doc))
-  return key 
+  return key
 }
 
-const getValue = (id) => {
-  return redisClient.get(id, (err, resp) => {
-    return resp
+const getValue = async (id) => {
+  return new Promise((resolve, reject) => {
+    redisClient.get(id, (err, resp) => {
+      if (err) reject(err);
+
+      resolve(resp)
+    })
   })
 }
 
 async function pageRender(_req, res) {
-  const output = { status: "start" } 
+  const output = { status: "start" }
   // save stuff to redis
-  const setId = setValue('some stuff i saved in redis')
+  const setId = await setValue('some stuff i saved in redis')
 
-  const data = getValue(setId)
+  const data = await getValue(setId)
 
   _.set(output, 'data', data)
 
@@ -47,4 +51,4 @@ async function pageRender(_req, res) {
   res.status(200).json(output)
 }
 
-export default apiPageHandler(pageRender); 
+export default apiPageHandler(pageRender);
