@@ -7,8 +7,8 @@ import Box from '@material-ui/core/Box'
 export default function SecretLink (props) {
     const [copyConfirmed, setCopyConfirmed] = useState(false)
 
-    const handleBoxClick = () => {
-        navigator.clipboard.writeText(props.link).then(function() {
+    const handleBoxClick = (e) => {
+        navigator.clipboard.writeText(e.target.innerText).then(function() {
             setCopyConfirmed(true);
           }, function(err) {
             console.error('Async: Could not copy text: ', err);
@@ -17,7 +17,7 @@ export default function SecretLink (props) {
 
     return (
         <Container size="sm">
-            { copyConfirmed && <Alert onClose={() => setCopyConfirmed(false)}> Secret link copied to clipboard! </Alert> }
+            { copyConfirmed && <Alert onClose={() => setCopyConfirmed(false)}> Content copied to clipboard! </Alert> }
             <Typography
                 variant="h4" 
                 color="textPrimary"
@@ -27,7 +27,13 @@ export default function SecretLink (props) {
             </Typography>
 
             <Box onClick={handleBoxClick} component="p" sx={{ border: '1px dashed grey', padding: '5px', overflowWrap: 'anywhere' }}>
-                {props.link}
+                Here is the link to access the secret object: 
+                <br />
+                <b>{props.link}</b> 
+                <br /><br />
+                Please note that the link is valid until <b>{props.validUntil}</b> 
+                <br /><br />
+                Also, once you open the link you only have <b>30 seconds</b> to copy the secret message.
             </Box>
         </Container>
     );
