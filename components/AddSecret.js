@@ -33,7 +33,7 @@ const useStyles = makeStyles({
     }
   })
 
-export default function Create() {
+export default function AddSecret() {
   const classes = useStyles()
   const [comment, setComment] = useState('')
   const [secret, setSecret] = useState('')
