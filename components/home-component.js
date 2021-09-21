@@ -9,7 +9,6 @@ export default function HomeComponent(props) {
     // Call back-end api
     setLink(secret)
   }
-
   return <>
     { link ? <SecretLink link={link} /> : <AddSecret onSecretSubmit={submitSecret} /> }
   </>
