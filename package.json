@@ -8,8 +8,10 @@
   "dependencies": {
     "@azure/msal-browser": "^2.17.0",
     "@material-ui/core": "^4.12.3",
+    "@material-ui/lab": "^4.0.0-alpha.60",
     "cookie": "0.4.0",
     "dotenv": "^10.0.0",
+    "crypto-js": "^4.1.1",
     "lodash": "^4.17.21",
     "morgan": "^1.10.0",
     "next": "latest",
