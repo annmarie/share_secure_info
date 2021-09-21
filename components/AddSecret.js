@@ -34,7 +34,7 @@ const useStyles = makeStyles({
     }
   })
 
-export default function Create() {
+export default function AddSecret() {
   const classes = useStyles()
   const [comment, setComment] = useState('')
   const [secret, setSecret] = useState('')
@@ -64,7 +64,7 @@ export default function Create() {
             color="textPrimary"
             style={{ marginBottom: '20px' }}
       >
-        Create New Secret
+        Create new secret
       </Typography>
       
       <form noValidate autoComplete="off" onSubmit={handleSubmit}>
