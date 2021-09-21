@@ -39,9 +39,9 @@ export default function Index(props) {
       <CssBaseline />
     </ThemeProvider>
 
-    <NavigationComponent pagePath={pagePath} setPagePath={setPagePath} { ...props } />
+    { /* <NavigationComponent pagePath={pagePath} setPagePath={setPagePath} { ...props } /> */ }
     <PageComponent pagePath={pagePath} { ...props } />
-    <FooterComponent pagePath={pagePath} { ...props } />
+    { /* <FooterComponent pagePath={pagePath} { ...props } /> */ }
   </html>
 }
 

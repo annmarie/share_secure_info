@@ -1,7 +1,8 @@
-import _ from 'lodash'
+import React from 'react';
+import AddSecret from './AddSecret';
 
 export default function HomeComponent(props) {
   return <>
-    <h1>Home</h1>
+    <AddSecret />
   </>
 }
