@@ -1,24 +1,38 @@
 import React, { useState } from 'react'
 import { makeStyles } from '@material-ui/core'
 import Grid from '@material-ui/core/Grid'
-import Typography from '@material-ui/core/Typography'
 import Button from '@material-ui/core/Button'
+import Typography from '@material-ui/core/Typography'
 import Container from '@material-ui/core/Container'
 import TextField from '@material-ui/core/TextField'
 import Select from '@material-ui/core/Select'
 import MenuItem from '@material-ui/core/MenuItem'
 import FormControl from '@material-ui/core/FormControl'
-import InputLabel from '@material-ui/core/InputLabel'
+import FormLabel from '@material-ui/core/FormLabel'
+
+function convertTime(unit, unitType) {
+    let result;
+
+    if (unitType === 'minutes') {
+        result = parseInt(unit) * 60000
+    } else if (unitType === 'hours') {
+        result = parseInt(unit) * 60000 * 60
+    } else {
+        result = parseInt(unit) * 60000 * 60 * 24
+    }
+
+    return result
+}
 
 const useStyles = makeStyles({
-  field: {
-    marginTop: 20,
-    marginBottom: 20,
-  },
-  formControl: {
-      width: 120,
-  }
-})
+    field: {
+      marginTop: 20,
+      marginBottom: 20,
+    },
+    formControl: {
+        width: 200,
+    }
+  })
 
 export default function Create() {
   const classes = useStyles()
@@ -45,16 +59,16 @@ export default function Create() {
 
   return (
     <Container size="sm">
-      <Typography
-            variant="h6" 
-            color="textSecondary"
-            component="h2"
-            gutterBottom
+       <Typography
+            variant="h3" 
+            color="textPrimary"
+            style={{ marginBottom: '20px' }}
       >
         Create New Secret
       </Typography>
       
       <form noValidate autoComplete="off" onSubmit={handleSubmit}>
+        <FormLabel component="legend">Comment</FormLabel>
         <TextField className={classes.field}
             value={comment}
             onChange={(e) => setComment(e.target.value)}
@@ -65,6 +79,8 @@ export default function Create() {
             rows={4}
             fullWidth
         />
+
+        <FormLabel component="legend">Secret</FormLabel>
         <TextField className={classes.field}
             value={secret}
             onChange={(e) => setSecret(e.target.value)}
@@ -78,32 +94,30 @@ export default function Create() {
             error={secretError}
         />
 
-        <Grid container rowSpacing={1}>
-            <Grid item xs={6}>
-                <TextField 
-                    onChange={(e) => setUnit(e.target.value)}
-                    label="Enter a number"
-                    variant="outlined"
-                    color="primary"
-                    required
-                    fullWidth="false"
-                    error={unitError}
-                />
-            </Grid>
-            <Grid item xs={6}>
-                <FormControl className={classes.formControl}>
-                    <Select
-                        value={unitType}
-                        onChange={(e) => setUnitType(e.target.value)}
-                        style={{ width: '120px' }}
-                    >
-                        <MenuItem value={'minutes'}>Minute(s)</MenuItem>
-                        <MenuItem value={'hours'}>Hour(s)</MenuItem>
-                        <MenuItem value={'days'}>Day(s)</MenuItem>
-                    </Select>
-                </FormControl>
-            </Grid>
-        </Grid>
+        <FormLabel component="legend">Valid Until</FormLabel>
+        <div style={{ marginBottom: '10px', paddingLeft: 0 }}>
+            <TextField 
+                onChange={(e) => setUnit(e.target.value)}
+                label="Enter a number"
+                variant="outlined"
+                color="primary"
+                required
+                fullWidth="false"
+                error={unitError}
+                style={{ width: '200px', marginRight: '10px'}}
+            />
+            <FormControl variant='outlined' className={classes.formControl}>
+                <Select
+                    value={unitType}
+                    onChange={(e) => setUnitType(e.target.value)}
+                    style={{ width: '200px' }}
+                >
+                    <MenuItem value={'minutes'}>Minute(s)</MenuItem>
+                    <MenuItem value={'hours'}>Hour(s)</MenuItem>
+                    <MenuItem value={'days'}>Day(s)</MenuItem>
+                </Select>
+            </FormControl>
+        </div>
 
         <Button
           type="submit" 
