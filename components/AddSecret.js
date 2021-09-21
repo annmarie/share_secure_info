@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import { makeStyles } from '@material-ui/core'
-import Grid from '@material-ui/core/Grid'
 import Button from '@material-ui/core/Button'
 import Typography from '@material-ui/core/Typography'
 import Container from '@material-ui/core/Container'
@@ -54,17 +53,17 @@ export default function AddSecret() {
     if (unit.trim() === '' || +unit <= 0) {
         setUnitError(true)
     }
-    console.log(title, details, category)
+    // console.log(title, details, category)
   }
 
   return (
     <Container size="sm">
        <Typography
-            variant="h3" 
-            color="textPrimary"
-            style={{ marginBottom: '20px' }}
+            variant="h4" 
+            color="textSecondary"
+            style={{ marginBottom: '48px' }}
       >
-        Create new secret
+        Create Secret
       </Typography>
       
       <form noValidate autoComplete="off" onSubmit={handleSubmit}>
@@ -78,6 +77,7 @@ export default function AddSecret() {
             multiline
             rows={4}
             fullWidth
+            style={{ marginBottom: '32px' }}
         />
 
         <FormLabel component="legend">Secret</FormLabel>
@@ -92,6 +92,7 @@ export default function AddSecret() {
             fullWidth
             required
             error={secretError}
+            style={{ marginBottom: '48px' }}
         />
 
         <FormLabel component="legend">Valid Until</FormLabel>
