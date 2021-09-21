@@ -10,9 +10,16 @@ import TestComponent from 'components/test-component'
 import NavigationComponent from 'components/navigation-component'
 import FooterComponent from 'components/footer-component'
 import HomeComponent from "components/home-component"
+import CryptoJS from 'crypto-js'
+
+//Here's a test
+const encrypted = CryptoJS.AES.encrypt('firstmessage','secret passphrase').toString();
+console.log(encrypted);
+const decrypted = CryptoJS.AES.decrypt(encrypted, 'secret passphrase');
+const originalText = decrypted.toString(CryptoJS.enc.Utf8);
+console.log(originalText);
 
 export default function Index(props) {
-
   // this is simpilar to using componentDidMount
   React.useEffect(() => {
     // this is required for MUI
