@@ -18,9 +18,33 @@ const redisClient = connectRedis()
 const apiPageHandler = (handler) => (req, res) => {
   // assign to res object
   // res.cookie = (name, value, options) => cookie(res, name, value, options)
-  // res.redisClient = redisClient
+  if(req.method === "post"){
+    return await asyncSetValue(req.value, req.expiration)
+  }
+
+  if(req.method === 'get'){
+    return await asyncGetValue(req.key)
+  }
+
+  req.redisClient = redisClient
 
   return handler(req, res)
 }
+
+const asyncSetValue = (value, expiration) => {
+  const id = randomUUID;
+  const key = `${redisKeyPrefix}-${id}`;
+
+  redisSetAsync(key, expiration, value);
+  return key;
+};
+
+const asyncGetValue = async (id) => {
+    const key = `${redisKeyPrefix}-${id}`;
+    const val = await redisGetAsync(key);
+
+    redisSetAsync(key, '');
+    return val;
+};
 
 export default apiPageHandler;
