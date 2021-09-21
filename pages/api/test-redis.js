@@ -1,6 +1,7 @@
 import apiPageHandler from 'middleware/api-page-handler'
 import _ from 'lodash'
 import redis from 'redis'
+import * as uuid from 'uuid';
 
 // TODO: move this to it's own file under utils
 const connectRedis = () => {
@@ -14,38 +15,35 @@ const connectRedis = () => {
   })
 }
 const redisClient = connectRedis()
+const redisKeyPrefix = 'MYREDISKEY'
 
-// const redisGetAsync = promisify(redisClient.get).bind(redisClient);
-// const redisSetAsync = promisify(redisClient.setex).bind(redisClient);
+const setValue = (value) => {
+  const id = uuid.v4()
+  const key = `${redisKeyPrefix}-${id}`; 
+  const doc = {
+      value: value,
+      status: 'Current'
+  }
+  redisClient.setex(key, 123332, JSON.stringify(doc))
+  return key 
+}
 
-// const asyncSetValue = (id, value) => {
-//   const key = `${redisKeyPrefix}-${id}`; 
-//   const doc = {
-//       value: value,
-//       status: 'Current'
-//   }
-//   redisSetAsync(key, config.cacheExpiration, doc);
-// };
+const getValue = (id) => {
+  return redisClient.get(id, (err, resp) => {
+    return resp
+  })
+}
 
-// const asyncGetValue = id => {
-//     const key = `${redisKeyPrefix}-${id}`;
-//     const val = await redisGetAsync(key);
-//     const invalidated = {
-//         value: '',
-//         status: 'Consumed'
-//     }
-//     redisSetAsync(key, config.cacheExpiration, invalidated);
-//     return val;
-// };
-
-async function pageRender(req, res) {
-  const output = {} 
-  const key = 'MYREDISKEY'
+async function pageRender(_req, res) {
+  const output = { status: "start" } 
   // save stuff to redis
-  //req.redisClient.set(key, 'some stuff i saved in redis')
+  const setId = setValue('some stuff i saved in redis')
+
+  const data = getValue(setId)
+
+  _.set(output, 'data', data)
 
   // render page
-  //output[key] = value
   res.status(200).json(output)
 }
 
