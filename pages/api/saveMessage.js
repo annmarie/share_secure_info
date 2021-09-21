@@ -1,10 +1,11 @@
-import apiPageHandler from 'middleware/api-page-handler'
-import setValue from 'middleware/redisClientAsync'
+import setValue from '../../middleware/redisClientAsync'
+import apiPageHandler from '../../middleware/api-page-handler'
 
-async const saveMessage = (req, res) => {
+const saveMessage = async (req, res) => {
     const message = req.message
     const expire = req.expire || 10000
-    return await setValue(message, expire)
+    const key = await setValue(message, expire)
+    res.status(200).json(key);
 }
 
 export default apiPageHandler(saveMessage)

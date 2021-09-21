@@ -1,6 +1,6 @@
 import _ from 'lodash'
 import redis from 'redis'
-import cookie from 'utils/cookie'
+import cookie from '../utils/cookie'
 
 // TODO: move this to it's own file under utils
 const connectRedis = () => {
@@ -17,8 +17,8 @@ const redisClient = connectRedis()
 
 const apiPageHandler = (handler) => (req, res) => {
   // assign to res object
-  res.cookie = (name, value, options) => cookie(res, name, value, options)
-  res.redisClient = redisClient
+  // res.cookie = (name, value, options) => cookie(res, name, value, options)
+  // res.redisClient = redisClient
 
   return handler(req, res)
 }

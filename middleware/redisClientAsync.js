@@ -1,11 +1,13 @@
 const redis = require("redis");
 const { promisify } = require("util");
-const logger = require("./logger");
-const config = require("./config");
-const { random } = require("lodash");
 const { randomUUID } = require("crypto");
 
-const redisClient = redis.createClient(config.redisPort, config.redisHost);
+const host = process.env.REDIS_HOST || 'localhost'
+const port = process.env.REDIS_PORT || '6379'
+const password = process.env.REDIS_PASSWORD
+const config = (password) ? { host, port, password } : { host, port }
+const redisClient = redis.createClient(config);
+
 const redisKeyPrefix = "share-secure-info";
 
 redisClient.on("err", err => {
@@ -23,11 +25,11 @@ const asyncSetValue = (value, expiration) => {
   return key;
 };
 
-const asyncGetValue = id => {
+const asyncGetValue = async (id) => {
     const key = `${redisKeyPrefix}-${id}`;
     const val = await redisGetAsync(key);
 
-    redisSetAsync(key, config.cacheExpiration, '');
+    redisSetAsync(key, '');
     return val;
 };
 
