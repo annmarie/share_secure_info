@@ -15,30 +15,33 @@ const connectRedis = () => {
 }
 const redisClient = connectRedis()
 
-const setRedisValue = (id, value) => {
-  const key = `${redisKeyPrefix}-${id}`; 
-  const doc = {
-      value: value,
-      status: 'Current'
-  }
-  redisClient.get(key, config.cacheExpiration, doc);
-};
+// const redisGetAsync = promisify(redisClient.get).bind(redisClient);
+// const redisSetAsync = promisify(redisClient.setex).bind(redisClient);
 
-const getRedisValue = id => {
-    const key = `${redisKeyPrefix}-${id}`;
-    const val = await redisGetAsync(key);
-    const invalidated = {
-        value: '',
-        status: 'Consumed'
-    }
-    redisClient.setex(key, config.cacheExpiration, invalidated);
-    return val;
-};
+// const asyncSetValue = (id, value) => {
+//   const key = `${redisKeyPrefix}-${id}`; 
+//   const doc = {
+//       value: value,
+//       status: 'Current'
+//   }
+//   redisSetAsync(key, config.cacheExpiration, doc);
+// };
+
+// const asyncGetValue = id => {
+//     const key = `${redisKeyPrefix}-${id}`;
+//     const val = await redisGetAsync(key);
+//     const invalidated = {
+//         value: '',
+//         status: 'Consumed'
+//     }
+//     redisSetAsync(key, config.cacheExpiration, invalidated);
+//     return val;
+// };
 
 const apiPageHandler = (handler) => (req, res) => {
   // assign to res object
-  rep.cookie = (name, value, options) => cookie(res, name, value, options)
-  rep.redisClient = redisClient
+  req.cookie = (name, value, options) => cookie(res, name, value, options)
+  req.redisClient = redisClient
 
   return handler(req, res)
 }

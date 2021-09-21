@@ -1,7 +1,7 @@
 import apiPageHandler from 'middleware/api-page-handler'
 
 const pageRender = (req, res) => {
-  rep.cookie('TestCookie', 'THIS IS MY TEST COOKIE!')
+  req.cookie('TestCookie', 'THIS IS MY TEST COOKIE!')
   res.end(res.getHeader('Set-Cookie'))
 }
 
