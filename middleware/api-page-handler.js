@@ -15,10 +15,30 @@ const connectRedis = () => {
 }
 const redisClient = connectRedis()
 
+const setRedisValue = (id, value) => {
+  const key = `${redisKeyPrefix}-${id}`; 
+  const doc = {
+      value: value,
+      status: 'Current'
+  }
+  redisClient.get(key, config.cacheExpiration, doc);
+};
+
+const getRedisValue = id => {
+    const key = `${redisKeyPrefix}-${id}`;
+    const val = await redisGetAsync(key);
+    const invalidated = {
+        value: '',
+        status: 'Consumed'
+    }
+    redisClient.setex(key, config.cacheExpiration, invalidated);
+    return val;
+};
+
 const apiPageHandler = (handler) => (req, res) => {
   // assign to res object
-  res.cookie = (name, value, options) => cookie(res, name, value, options)
-  res.redisClient = redisClient
+  rep.cookie = (name, value, options) => cookie(res, name, value, options)
+  rep.redisClient = redisClient
 
   return handler(req, res)
 }
