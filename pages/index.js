@@ -1,10 +1,7 @@
 import React from 'react'
-import { useState } from 'react'
 import { useRouter } from "next/router"
 import Head from 'next/head'
 import _ from 'lodash'
-import { ThemeProvider } from '@material-ui/core/styles'
-import CssBaseline from '@material-ui/core/CssBaseline'
 import appPageHandler from 'middleware/app-page-handler'
 import TestComponent from 'components/test-component'
 import NavigationComponent from 'components/navigation-component'
@@ -30,31 +27,22 @@ export default function Index(props) {
     }
   }, []);
 
-  // set state hooks for pagePath value
-  const router = useRouter();
-  const [pagePath, setPagePath] = useState(_.get(router, 'asPath', ''))
-
   // render html page
-  // ThemeProvider / CssBaseline is an attempt to add MUI
-  // this might not be the right way to do it
-  return <html>
+  return <>
     <Head>
       <title>Share Secure Info</title>
     </Head>
 
-    <ThemeProvider>
-      <CssBaseline />
-    </ThemeProvider>
-
-    { /* <NavigationComponent pagePath={pagePath} setPagePath={setPagePath} { ...props } /> */ }
-    <PageComponent pagePath={pagePath} { ...props } />
-    { /* <FooterComponent pagePath={pagePath} { ...props } /> */ }
-  </html>
+    <NavigationComponent { ...props } />
+    <PageComponent { ...props } />
+    <FooterComponent { ...props } /> 
+  </>
 }
 
 function PageComponent(props) {
-  const path = _.get(props, 'pagePath')
-
+  const router = useRouter()
+  const path = _.get(router, 'asPath', '/')
+ 
   switch(path) {
     case '/':
       return <HomeComponent { ...props } />
@@ -71,7 +59,7 @@ export function getServerSideProps(ctx) {
   appPageHandler(ctx.req, ctx.res)
 
   // validate request url against the list of nav links from the config
-  const reqPath = _.get(ctx, 'req.url')
+  const [reqPath, _qs] = _.get(ctx, 'req.url', '').split('?')
   const appConfig = ctx.req.appConfig
   const navPaths = appConfig.navLinks.map(navLink => navLink.path)
   // if the user clicked a LINK component
