@@ -4,7 +4,6 @@ import Head from 'next/head'
 import _ from 'lodash'
 import appPageHandler from 'middleware/app-page-handler'
 import TestComponent from 'components/test-component'
-import NavigationComponent from 'components/navigation-component'
 import FooterComponent from 'components/footer-component'
 import HomeComponent from "components/home-component"
 import CryptoJS from 'crypto-js'
@@ -31,7 +30,6 @@ export default function Index(props) {
       <title>Share Secure Info</title>
     </Head>
 
-    <NavigationComponent { ...props } />
     <PageComponent { ...props } />
     <FooterComponent { ...props } /> 
   </>
@@ -55,20 +53,8 @@ function PageComponent(props) {
 export function getServerSideProps(ctx) {
   // middleware
   appPageHandler(ctx.req, ctx.res)
-
-  // validate request url against the list of nav links from the config
-  const [reqPath, _qs] = _.get(ctx, 'req.url', '').split('?')
   const appConfig = ctx.req.appConfig
-  const navPaths = appConfig.navLinks.map(navLink => navLink.path)
-  // if the user clicked a LINK component
-  if (reqPath.match(/\/_next\/data\/.*\/index.json/)) {
-    // add the url as valid 
-    navPaths.push(reqPath)
-  }
-  const validUrl = navPaths.includes(reqPath) ? true : false
-
-  // if no valid url path is found render 404 page
-  if (!validUrl) return { notFound: true }
+  _.set(appConfig, 'query', ctx.query)
 
   // pass config data to page props
   return { props: { ...appConfig } }

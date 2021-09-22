@@ -14,7 +14,7 @@ module.exports = (phase, { defaultConfig }) => {
             destination: "/secret",
           },
           {
-            source: '/:path*',
+            source: '/',
             destination: "/",
           },
         ],
