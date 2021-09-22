@@ -12,7 +12,7 @@ export default function SecretLink (props) {
 
     const protocol = window.location.protocol;
     const host = window.location.host;
-    const baseUrl = `${protocol}://${host}/${viewSecretRoute}`;
+    const baseUrl = `${protocol}//${host}/${viewSecretRoute}`;
 
     const handleButtonClick = (e) => {
         navigator.clipboard.writeText(boxRef.current.innerText).then(function() {

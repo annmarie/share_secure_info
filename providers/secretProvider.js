@@ -23,13 +23,10 @@ export const setSecret = async (secretItem, timeout=86400) => {
 };
 
 export const getSecret = async (key) => {
-    // if(!key || !isUuid(key.split('|')[1])) {
-    //     throw new Error(`Invalid Id: ${key}`)
-    // }
-
     const client = getClient();
+    const secretKey = `${keyPrefix}|${key}`;
     try {
-        return await client.get(key);
+        return await client.get(secretKey);
     } catch (error) {
         console.log(error);
         throw error;

@@ -1,11 +1,29 @@
 import _ from 'lodash'
+import React, { useState, useEffect } from 'react'
 import appPageHandler from 'middleware/app-page-handler'
+import { decryptSecret } from 'providers/encryptionProvider';
+import ViewSecret from 'components/ViewSecret'
 
 export default function Index(props) {
-  // render html page
-  return <>
-    This is the secret: {props.query.secret}
-  </>
+  const [secretMessage, setSecretMessage] = useState('');
+  const [comment, setComment] = useState('');
+
+  useEffect(() => {
+    async function getSecretMessage() {
+      const result = await fetch(`/api/secret?id=${props.query.secret}`);
+      const data = await result.json();
+      const decryptedData = decryptSecret(data.val)
+
+      setSecretMessage(decryptedData.link)
+      setComment(decryptedData.comment)
+    }
+
+    getSecretMessage()
+  })
+
+  return secretMessage 
+    ? <ViewSecret secret={secretMessage} comment={comment} />
+    : <>Loading secret message...</>
 }
 
 // using this instead of `getInitialProps`
