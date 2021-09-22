@@ -59,8 +59,6 @@ export default function AddSecret(props) {
     onSecretSubmit(instruction, secret, convertTime(unit, unitType))
   }
 
-  console.log(window.location.href);
-
   return (
     <Container size="sm">
        <Typography

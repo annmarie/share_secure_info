@@ -6,9 +6,7 @@ import Box from '@material-ui/core/Box'
 
 export default function SecretLink (props) {
     const [copyConfirmed, setCopyConfirmed] = useState(false)
-    const baseUrl = domain;
-
-    console.log(domain)
+    const baseUrl = window.location.href;
 
     const handleBoxClick = (e) => {
         navigator.clipboard.writeText(e.target.innerText).then(function() {
