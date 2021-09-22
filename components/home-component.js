@@ -18,7 +18,7 @@ export default function HomeComponent(props) {
     setLink(secret);
     setValidUntil(`${linkExpiresAtDate} ${linkExpiresAtTime}`);
 
-    const msg = { link: secret, expiration: validUntil }
+    const msg = { link: secret, expiration: validUntil / 1000 }
 
     const response = await fetch('/api/test-redis', {
       method: 'POST',
