@@ -33,17 +33,19 @@ const useStyles = makeStyles({
     }
   })
 
-export default function AddSecret() {
+export default function AddSecret(props) {
   const classes = useStyles()
-  const [comment, setComment] = useState('')
+  const [instruction, setInstruction] = useState('')
   const [secret, setSecret] = useState('')
   const [secretError, setSecretError] = useState(false)
   const [unit, setUnit] = useState('')
   const [unitError, setUnitError] = useState(false)
   const [unitType, setUnitType] = useState('minutes')
+  const { onSecretSubmit } = props
 
   const handleSubmit = (e) => {
     e.preventDefault()
+
     setSecretError(false)
     setUnitError(false)
 
@@ -53,7 +55,8 @@ export default function AddSecret() {
     if (unit.trim() === '' || +unit <= 0) {
         setUnitError(true)
     }
-    // console.log(title, details, category)
+    
+    onSecretSubmit(instruction, secret, convertTime(unit, unitType))
   }
 
   return (
@@ -67,11 +70,11 @@ export default function AddSecret() {
       </Typography>
       
       <form noValidate autoComplete="off" onSubmit={handleSubmit}>
-        <FormLabel component="legend">Comment</FormLabel>
+        <FormLabel component="legend">Instruction</FormLabel>
         <TextField className={classes.field}
-            value={comment}
-            onChange={(e) => setComment(e.target.value)}
-            label="Enter comment here" 
+            value={instruction}
+            onChange={(e) => setInstruction(e.target.value)}
+            label="Enter instruction here" 
             variant="outlined" 
             color="primary" 
             multiline
