@@ -34,10 +34,10 @@ export const getSecret = async (key) => {
 };
 
 export const removeSecret = async(key) => {
+    const secretKey = `${keyPrefix}|${key}`;
     const client = getClient();
-   
     try {
-        return await client.del(key);
+        return await client.del(secretKey);
     } catch(error) {
         console.log(error);
         return error;
