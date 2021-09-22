@@ -1,4 +1,4 @@
-const redisClientAsync = require('../../../middleware/redisClientAsync')
+//const redisClientAsync = require('../../../middleware/redisClientAsync')
 import saveMessage from '../../../pages/api/saveMessage'
 
 //console.log(redisClientAsync)
