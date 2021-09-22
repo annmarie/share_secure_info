@@ -1,8 +1,9 @@
 import _ from 'lodash'
 
 export default function FooterComponent(props) {
+  if (!props.useFooter) return ''
+
   return <>
-    <hr />
     <div>{props.footerText}</div>
   </>
 }
