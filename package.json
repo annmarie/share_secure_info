@@ -8,6 +8,7 @@
   "dependencies": {
     "@material-ui/core": "^4.12.3",
     "@material-ui/lab": "^4.0.0-alpha.60",
+    "async-redis": "^2.0.0",
     "cookie": "0.4.0",
     "crypto-js": "^4.1.1",
     "lodash": "^4.17.21",
@@ -19,6 +20,7 @@
     "redis": "^3.1.2",
     "sass": "^1.41.1",
     "swr": "0.1.18",
-    "uuid": "^8.3.2"
+    "uuid": "^8.3.2",
+    "validator": "^13.6.0"
   }
 }
