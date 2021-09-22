@@ -3,7 +3,6 @@ import { useRouter } from "next/router"
 import Head from 'next/head'
 import _ from 'lodash'
 import appPageHandler from 'middleware/app-page-handler'
-import TestComponent from 'components/test-component'
 import NavigationComponent from 'components/navigation-component'
 import FooterComponent from 'components/footer-component'
 import StepsComponent from 'components/steps-component'
