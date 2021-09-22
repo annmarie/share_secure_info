@@ -35,3 +35,14 @@ export const getSecret = async (key) => {
         throw error;
     }
 };
+
+export const removeSecret = async(key) => {
+    const client = getClient();
+   
+    try {
+        return await client.del(key);
+    } catch(error) {
+        console.log(error);
+        return error;
+    }
+}
