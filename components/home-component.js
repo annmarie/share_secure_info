@@ -6,8 +6,8 @@ export default function HomeComponent(props) {
   const [link, setLink] = useState('');
   const [validUntil, setValidUntil] = useState('');
 
-  const submitSecret = (instruction, secret, validUntil) => {
-    
+  const submitSecret = async (instruction, secret, validUntil) => {
+
     let dateObject = Date.now();
     dateObject += validUntil;
 
@@ -17,9 +17,20 @@ export default function HomeComponent(props) {
 
     setLink(secret);
     setValidUntil(`${linkExpiresAtDate} ${linkExpiresAtTime}`);
-  }
 
+    const msg = { link: secret, expiration: validUntil }
+
+    const response = await fetch('/api/test-redis', {
+      method: 'POST',
+      body: JSON.stringify({ msg }),
+      headers: {
+        'Content-type': 'application/json',
+      }
+    })
+    const data = await response.json()
+    console.log(data)
+  }
   return <>
-    { link ? <SecretLink link={link} validUntil={validUntil} /> : <AddSecret onSecretSubmit={submitSecret} /> }
+    {link ? <SecretLink link={link} validUntil={validUntil} /> : <AddSecret onSecretSubmit={submitSecret} />}
   </>
 }
