@@ -17,14 +17,14 @@ const connectRedis = () => {
 const redisClient = connectRedis()
 const redisKeyPrefix = 'MYREDISKEY'
 
-const setValue = async (value) => {
+const setValue = async (msg) => {
   const id = uuid.v4()
   const key = `${redisKeyPrefix}-${id}`;
   const doc = {
-    value: value,
+    value: msg.link,
     status: 'Current'
   }
-  redisClient.setex(key, 123332, JSON.stringify(doc))
+  redisClient.setex(key, msg.expiration, JSON.stringify(doc))
   return key
 }
 
@@ -38,17 +38,22 @@ const getValue = async (id) => {
   })
 }
 
-async function pageRender(_req, res) {
+async function requestHandler(_req, res) {
+  if(_req.method === 'POST'){
   const output = { status: "start" }
   // save stuff to redis
-  const setId = await setValue('some stuff i saved in redis')
+  const setId = await setValue(_req.body.msg)
 
   const data = await getValue(setId)
 
   _.set(output, 'data', data)
-
   // render page
   res.status(200).json(output)
+  } else if(_req.method === 'GET') {
+
+    // retrieve link goes here
+    res.status(200).json({msg:false})
+  }
 }
 
-export default apiPageHandler(pageRender);
+export default apiPageHandler(requestHandler);
