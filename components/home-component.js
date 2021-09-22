@@ -12,6 +12,7 @@ export default function HomeComponent(props) {
   const submitSecret = async (instruction, secret, validUntil) => {
 
     let dateObject = Date.now();
+    dateObject += validUntil
 
     const date = new Date(dateObject);
     const linkExpiresAtDate = `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`
