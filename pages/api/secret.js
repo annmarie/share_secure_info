@@ -9,8 +9,8 @@ async function requestHandler(_req, res) {
     const id = await setSecret(_req.body.msg, _req.body.expiration);
     res.status(200).json({ id })
   } else if (_req.method === 'GET') {
-    const val = await getSecret(_req.body.id);
-    await removeSecret(_req.body.id);
+    const val = await getSecret(_req.query.id);
+    await removeSecret(_req.query.id);
     res.status(200).json({ val })
   }
 }
