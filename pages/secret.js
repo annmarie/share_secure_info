@@ -4,7 +4,7 @@ import appPageHandler from 'middleware/app-page-handler'
 export default function Index(props) {
   // render html page
   return <>
-    This is the secret: {props.params}
+    This is the secret: {props.query.secret}
   </>
 }
 
@@ -13,9 +13,7 @@ export function getServerSideProps(ctx) {
   // middleware
   appPageHandler(ctx.req, ctx.res)
   const appConfig = ctx.req.appConfig
-  _.set(appConfig, 'secret', "NEED TO ADD IT HERE")
-
-  //_.set(appConfig, 'params', ctx.req.params)
+  _.set(appConfig, 'query', ctx.query)
 
   // pass config data to page props
   return { props: { ...appConfig } }
