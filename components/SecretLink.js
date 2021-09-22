@@ -40,7 +40,7 @@ export default function SecretLink (props) {
                 <br /><br />
                 Please note that the link is valid until <b>{props.validUntil}</b> 
                 <br /><br />
-                Also, once you open the link you only have <b>30 seconds</b> to copy the secret message.
+                Once you open the link you only have <b>30 seconds</b> to copy the secret message.
             </Box>
             <Button
                 type="submit" 
