@@ -50,7 +50,7 @@ export default function ViewSecret (props) {
                 variant="contained"
                 onClick={handleButtonClick} 
             >
-                Copy to clipboard
+                Copy secret to clipboard
             </Button>
         </Container>
     );
