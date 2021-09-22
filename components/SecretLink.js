@@ -6,6 +6,11 @@ import Box from '@material-ui/core/Box'
 
 export default function SecretLink (props) {
     const [copyConfirmed, setCopyConfirmed] = useState(false)
+    const viewSecretRoute = 'shh';
+
+    const protocol = window.location.protocol;
+    const host = window.location.host;
+    const baseUrl = `${protocol}://${host}/${viewSecretRoute}`;
 
     const handleBoxClick = (e) => {
         navigator.clipboard.writeText(e.target.innerText).then(function() {
@@ -29,7 +34,7 @@ export default function SecretLink (props) {
             <Box onClick={handleBoxClick} component="p" sx={{ border: '1px dashed grey', padding: '5px', overflowWrap: 'anywhere' }}>
                 Here is the link to access the secret object: 
                 <br />
-                <b>{props.link}</b> 
+                <b>{`${baseUrl}/${props.link}`}</b> 
                 <br /><br />
                 Please note that the link is valid until <b>{props.validUntil}</b> 
                 <br /><br />
