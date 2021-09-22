@@ -17,7 +17,7 @@ export default function HomeComponent(props) {
     const linkExpiresAtTime = `${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`
 
     const msg = { link: secret, comment: instruction }
-    const encrypted = CryptoJS.AES.encrypt(msg,'secret passphrase').toString();
+    const encrypted = `bogoCyper-${msg}` //CryptoJS.AES.encrypt(msg,'secret passphrase').toString();
     const response = await fetch('/api/secret', {
       method: 'POST',
       body: JSON.stringify({ msg: encrypted, expiration: validUntil / 1000}),
@@ -28,7 +28,7 @@ export default function HomeComponent(props) {
     const data = await response.json()
     console.log(data)
 
-    setLink(secret);
+    setLink(data.id);
     setValidUntil(`${linkExpiresAtDate} ${linkExpiresAtTime}`);
   }
 
