@@ -1,10 +1,11 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import Container from '@material-ui/core/Container'
 import Alert from '@material-ui/lab/Alert'
 import Typography from '@material-ui/core/Typography'
 import Box from '@material-ui/core/Box'
 
 export default function ViewSecret (props) {
+    let boxRef = useRef();
     const [tick, setTick] = useState(10);
     const [destroySecret, setDestroySecret] = useState(false);
     const [copyConfirmed, setCopyConfirmed] = useState(false);
@@ -20,8 +21,8 @@ export default function ViewSecret (props) {
         return () => clearInterval(interval);
     });
 
-    const handleBoxClick = (e) => {
-        navigator.clipboard.writeText(e.target.innerText).then(function() {
+    const handleButtonClick = (e) => {
+        navigator.clipboard.writeText(boxRef.current.innerText).then(function() {
             setCopyConfirmed(true);
           }, function(err) {
             console.error('Async: Could not copy text: ', err);
@@ -40,9 +41,17 @@ export default function ViewSecret (props) {
                 Secret message will be destroyed in {`${tick} ${unit}`}.
             </Typography>
 
-            <Box onClick={handleBoxClick} component="p" sx={{ border: '1px dashed grey', padding: '5px', overflowWrap: 'anywhere' }}>
+            <Box ref={boxRef} component="p" sx={{ border: '1px dashed grey', padding: '5px', overflowWrap: 'anywhere' }}>
                 {props.secret}
             </Box>
+            <Button
+                type="submit" 
+                color="primary" 
+                variant="contained"
+                onClick={handleButtonClick} 
+            >
+                Copy to clipboard
+            </Button>
         </Container>
     );
 

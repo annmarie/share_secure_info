@@ -1,10 +1,12 @@
-import React, { useState } from 'react'
+import React, { useState, useRef } from 'react'
 import Container from '@material-ui/core/Container'
 import Alert from '@material-ui/lab/Alert'
 import Typography from '@material-ui/core/Typography'
 import Box from '@material-ui/core/Box'
+import Button from '@material-ui/core/Button'
 
 export default function SecretLink (props) {
+    let boxRef = useRef();
     const [copyConfirmed, setCopyConfirmed] = useState(false)
     const viewSecretRoute = 'shh';
 
@@ -12,8 +14,8 @@ export default function SecretLink (props) {
     const host = window.location.host;
     const baseUrl = `${protocol}://${host}/${viewSecretRoute}`;
 
-    const handleBoxClick = (e) => {
-        navigator.clipboard.writeText(e.target.innerText).then(function() {
+    const handleButtonClick = (e) => {
+        navigator.clipboard.writeText(boxRef.current.innerText).then(function() {
             setCopyConfirmed(true);
           }, function(err) {
             console.error('Async: Could not copy text: ', err);
@@ -31,7 +33,7 @@ export default function SecretLink (props) {
                 Your secret is ready to share!
             </Typography>
 
-            <Box onClick={handleBoxClick} component="p" sx={{ border: '1px dashed grey', padding: '5px', overflowWrap: 'anywhere' }}>
+            <Box ref={boxRef} component="p" sx={{ border: '1px dashed grey', padding: '5px', overflowWrap: 'anywhere' }}>
                 Here is the link to access the secret object: 
                 <br />
                 <b>{`${baseUrl}/${props.link}`}</b> 
@@ -40,6 +42,14 @@ export default function SecretLink (props) {
                 <br /><br />
                 Also, once you open the link you only have <b>30 seconds</b> to copy the secret message.
             </Box>
+            <Button
+                type="submit" 
+                color="primary" 
+                variant="contained"
+                onClick={handleButtonClick} 
+            >
+                Copy to clipboard
+            </Button>
         </Container>
     );
 }
