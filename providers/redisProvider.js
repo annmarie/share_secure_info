@@ -7,7 +7,7 @@ export const getClient = () => {
     const port = process.env.REDIS_PORT || '6379'
     const username = ""
     const password = process.env.REDIS_PASSWORD
-    const connectionString = `redis://${host}:${port}`;
+    if (password) return createClient(`redis://${username}:${password}@${host}:${port}`)
 
-    return createClient(connectionString);
+    return createClient();
 }
