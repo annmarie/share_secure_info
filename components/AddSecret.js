@@ -59,6 +59,8 @@ export default function AddSecret(props) {
     onSecretSubmit(instruction, secret, convertTime(unit, unitType))
   }
 
+  console.log(window.location.href);
+
   return (
     <Container size="sm">
        <Typography
@@ -106,7 +108,7 @@ export default function AddSecret(props) {
                 variant="outlined"
                 color="primary"
                 required
-                fullWidth="false"
+                fullWidth={false}
                 error={unitError}
                 style={{ width: '200px', marginRight: '10px'}}
             />

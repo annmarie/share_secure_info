@@ -25,9 +25,9 @@ export default function HomeComponent(props) {
       }
     })
     const data = await response.json()
-    console.log(data)
+    const id = data.id;
 
-    setLink(secret);
+    setLink(id.split('|')[1]);
     setValidUntil(`${linkExpiresAtDate} ${linkExpiresAtTime}`);
   }
 
