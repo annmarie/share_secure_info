@@ -1,22 +1,17 @@
 import apiPageHandler from 'middleware/api-page-handler'
-import {getValue, setValue } from '../../providers/redisProvider'
+import {getSecret, setSecret } from '../../providers/secretProvider'
 import _ from 'lodash'
 
 async function requestHandler(_req, res) {
   if(_req.method === 'POST'){
-  const output = { status: "start" }
+  const output = { status: "New" }
   // save stuff to redis
-  const setId = await setValue(_req.body.msg)
+  const id = await setSecret(_req.body.msg, _req.body.expiration)
 
-  const data = await getValue(setId)
-
-  _.set(output, 'data', data)
-  // render page
-  res.status(200).json(output)
+  res.status(200).json({id})
   } else if(_req.method === 'GET') {
-
-    // retrieve link goes here
-    res.status(200).json({msg:false})
+    const val = await getSecret(_req.body.id)
+    res.status(200).json({val})
   }
 }
 
