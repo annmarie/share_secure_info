@@ -12,14 +12,16 @@ export default function Index(props) {
     async function getSecretMessage() {
       const result = await fetch(`/api/secret?id=${props.query.secret}`);
       const data = await result.json();
-      const decryptedData = decryptSecret(data.val)
 
-      setSecretMessage(decryptedData.link)
-      setComment(decryptedData.comment)
+      if (data.val) {
+        const decryptedData = decryptSecret(data.val)
+        setSecretMessage(decryptedData.link)
+        setComment(decryptedData.comment)
+      }
     }
 
     getSecretMessage()
-  })
+  }, [])
 
   return secretMessage 
     ? <ViewSecret secret={secretMessage} comment={comment} />
