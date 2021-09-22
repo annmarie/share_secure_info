@@ -106,7 +106,7 @@ export default function AddSecret(props) {
                 variant="outlined"
                 color="primary"
                 required
-                fullWidth="false"
+                fullWidth={false}
                 error={unitError}
                 style={{ width: '200px', marginRight: '10px'}}
             />
