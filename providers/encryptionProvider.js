@@ -1,6 +1,7 @@
 import AESEncrypter from 'crypto-js/aes';
 import Utf8 from 'crypto-js/enc-utf8';
 
+// needs to go somewhere in config/ env var
 const appKey = 'E6A7D2BE6C84D98259197252D37E3';
 
 export const encryptSecret = (content) => {
