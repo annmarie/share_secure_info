@@ -7,12 +7,6 @@ import NavigationComponent from 'components/navigation-component'
 import FooterComponent from 'components/footer-component'
 import StepsComponent from 'components/steps-component'
 import HomeComponent from "components/home-component"
-import CryptoJS from 'crypto-js'
-
-//Here's a test
-const encrypted = CryptoJS.AES.encrypt('firstmessage','secret passphrase').toString();
-const decrypted = CryptoJS.AES.decrypt(encrypted, 'secret passphrase');
-const originalText = decrypted.toString(CryptoJS.enc.Utf8);
 
 export default function Index(props) {
   // this is simpilar to using componentDidMount
