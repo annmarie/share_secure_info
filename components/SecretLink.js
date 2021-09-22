@@ -48,7 +48,7 @@ export default function SecretLink (props) {
                 variant="contained"
                 onClick={handleButtonClick} 
             >
-                Copy to clipboard
+                Copy message to clipboard
             </Button>
         </Container>
     );
