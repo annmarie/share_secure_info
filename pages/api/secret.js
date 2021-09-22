@@ -1,14 +1,12 @@
 import apiPageHandler from 'middleware/api-page-handler'
-import {getValue, setValue } from '../../utils/redisApi'
+import {getValue, setValue } from '../../providers/redisProvider'
 import _ from 'lodash'
-
 
 async function requestHandler(_req, res) {
   if(_req.method === 'POST'){
   const output = { status: "start" }
   // save stuff to redis
-  const setId = await setValue('refactorized')
-
+  const setId = await setValue(_req.body.msg)
 
   const data = await getValue(setId)
 
