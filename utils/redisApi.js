@@ -2,7 +2,7 @@ import redisClient from './redisConnect'
 import * as uuid from 'uuid';
 import _ from 'lodash'
 
-const redisKeyPrefix = 'MYREDISKEY'
+const redisKeyPrefix = 'share-secrets-'
 
 export async function setValue (value)  {
   const id = uuid.v4()
