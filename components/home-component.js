@@ -2,8 +2,6 @@ import React, { useState } from 'react';
 import AddSecret from './AddSecret';
 import SecretLink from './SecretLink';
 import { encryptSecret } from 'providers/encryptionProvider';
-import ViewSecret from './ViewSecret';
-import CryptoJS from 'crypto-js'
 
 export default function HomeComponent(props) {
   const [link, setLink] = useState('');

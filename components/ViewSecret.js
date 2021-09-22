@@ -20,7 +20,7 @@ export default function ViewSecret (props) {
         }, 1000);
 
         return () => clearInterval(interval);
-    });
+    }, []);
 
     const handleButtonClick = (e) => {
         navigator.clipboard.writeText(boxRef.current.innerText).then(function() {
@@ -78,7 +78,7 @@ export default function ViewSecret (props) {
                 color="textPrimary"
                 style={{ marginBottom: '20px' }}
             >
-                Secret message is destroyed.
+                Secret message destroyed.
             </Typography>
         </Container>
     );

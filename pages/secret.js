@@ -3,10 +3,12 @@ import React, { useState, useEffect } from 'react'
 import appPageHandler from 'middleware/app-page-handler'
 import { decryptSecret } from 'providers/encryptionProvider';
 import ViewSecret from 'components/ViewSecret'
+import Message from 'components/Message'
 
 export default function Index(props) {
   const [secretMessage, setSecretMessage] = useState('');
   const [comment, setComment] = useState('');
+  const [dataLoaded, setDataLoaded] = useState(false);
 
   useEffect(() => {
     async function getSecretMessage() {
@@ -21,11 +23,13 @@ export default function Index(props) {
     }
 
     getSecretMessage()
+    setDataLoaded(true)
   }, [])
 
+  const landingMessage = dataLoaded ? 'Secret message already seen' : 'Loading secret message...'
   return secretMessage 
     ? <ViewSecret secret={secretMessage} comment={comment} />
-    : <>Loading secret message...</>
+    : <Message text={landingMessage} />
 }
 
 // using this instead of `getInitialProps`
