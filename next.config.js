@@ -10,6 +10,10 @@ module.exports = (phase, { defaultConfig }) => {
       return {
         fallback: [
           {
+            source: '/shh/:secret',
+            destination: "/secret",
+          },
+          {
             source: '/:path*',
             destination: "/",
           },
