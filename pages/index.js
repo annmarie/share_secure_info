@@ -3,16 +3,10 @@ import { useRouter } from "next/router"
 import Head from 'next/head'
 import _ from 'lodash'
 import appPageHandler from 'middleware/app-page-handler'
-import TestComponent from 'components/test-component'
 import NavigationComponent from 'components/navigation-component'
 import FooterComponent from 'components/footer-component'
+import StepsComponent from 'components/steps-component'
 import HomeComponent from "components/home-component"
-import CryptoJS from 'crypto-js'
-
-//Here's a test
-const encrypted = CryptoJS.AES.encrypt('firstmessage','secret passphrase').toString();
-const decrypted = CryptoJS.AES.decrypt(encrypted, 'secret passphrase');
-const originalText = decrypted.toString(CryptoJS.enc.Utf8);
 
 export default function Index(props) {
   // this is simpilar to using componentDidMount
@@ -32,7 +26,8 @@ export default function Index(props) {
     </Head>
 
     <NavigationComponent { ...props } />
-    <PageComponent { ...props } />
+    <HomeComponent { ...props } />
+    <StepsComponent { ...props} />
     <FooterComponent { ...props } /> 
   </>
 }
