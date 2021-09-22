@@ -59,7 +59,7 @@ export function getServerSideProps(ctx) {
   appPageHandler(ctx.req, ctx.res)
 
   // validate request url against the list of nav links from the config
-  const reqPath = _.get(ctx, 'req.url')
+  const [reqPath, _qs] = _.get(ctx, 'req.url', '').split('?')
   const appConfig = ctx.req.appConfig
   const navPaths = appConfig.navLinks.map(navLink => navLink.path)
   // if the user clicked a LINK component
