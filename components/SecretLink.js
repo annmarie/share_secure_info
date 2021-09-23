@@ -46,7 +46,7 @@ export default function SecretLink (props) {
                 <br />
                 <b>{`${baseUrl}/${props.link}`}</b> 
                 <br /><br />
-                Please note that the link is valid until <b>{props.validUntil}</b> 
+                Please note that the link is valid until <b>{props.validUntil}.</b> 
                 <br /><br />
                 Once you open the link you only have <b>30 seconds</b> to copy the secret message.
             </Box>

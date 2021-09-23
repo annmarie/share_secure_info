@@ -13,8 +13,19 @@ export default function HomeComponent(props) {
     dateObject += validUntil
 
     const date = new Date(dateObject);
-    const linkExpiresAtDate = `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`
-    const linkExpiresAtTime = `${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`
+    const formatAMPM = (date) => {
+      let hours = date.getHours();
+      let minutes = date.getMinutes();
+      let ampm = hours >= 12 ? 'pm' : 'am';
+      hours = hours % 12;
+      hours = hours ? hours : 12;
+      minutes = minutes.toString().padStart(2, '0');
+      let strTime = `${hours}:${minutes} ${ampm}`;
+      return strTime;
+    }
+
+    const linkExpiresAtDate = `${date.getMonth() + 1}/${date.getDate()}/${date.getFullYear()}`
+    const linkExpiresAtTime = formatAMPM(date);
 
     const msg = { link: secret, comment: instruction }
     const encrypted = encryptSecret(msg);
