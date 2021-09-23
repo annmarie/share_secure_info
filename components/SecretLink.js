@@ -62,7 +62,7 @@ export default function SecretLink (props) {
                 type="submit" 
                 color="primary" 
                 variant="contained"
-                onClick={handleLinkButtonClick(`${baseUrl}/${props.link}`)} 
+                onClick={() => handleLinkButtonClick(`${baseUrl}/${props.link}`)} 
             >
                 Copy Link to clipboard
             </Button>
