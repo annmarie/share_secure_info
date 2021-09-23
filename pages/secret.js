@@ -35,7 +35,7 @@ export default function Index(props) {
 export function getServerSideProps(ctx) {
   // middleware
   appPageHandler(ctx.req, ctx.res)
-  const appConfig = ctx.req.appConfig
+  const appConfig = _.get(ctx, 'req.appConfig', {})
   _.set(appConfig, 'query', ctx.query)
 
   // pass config data to page props
