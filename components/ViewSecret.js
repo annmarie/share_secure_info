@@ -10,6 +10,7 @@ export default function ViewSecret (props) {
     const [tick, setTick] = useState(30);
     const [destroySecret, setDestroySecret] = useState(false);
     const [copyConfirmed, setCopyConfirmed] = useState(false);
+    const { secret, comment, onSecretDestroy } = props;
 
     useEffect(() => {
         let interval = setInterval(() => {
@@ -30,11 +31,11 @@ export default function ViewSecret (props) {
     useEffect(() => {
         if (tick < 1) {
             setDestroySecret(true);
+            onSecretDestroy();
         }
     },[tick])
     
     const unit = tick > 1 ? 'seconds' : 'second';
-
     const commentComponent = (
         <>
             <Typography
@@ -43,7 +44,7 @@ export default function ViewSecret (props) {
             >
                 Instructions from secret generator:
             </Typography>
-            <p>{props.comment}</p>
+            <p>{comment}</p>
         </>
     );
 
@@ -58,10 +59,12 @@ export default function ViewSecret (props) {
                 Secret message will be destroyed in {`${tick} ${unit}`}.
             </Typography>
 
-            { props.comment.trim().length && commentComponent }
+            { comment.trim().length && commentComponent }
 
             <Box ref={boxRef} component="p" sx={{ border: '1px dashed grey', marginTop: '10px', padding: '5px', overflowWrap: 'anywhere' }}>
-                {props.secret}
+                <pre>
+                    {secret}
+                </pre>
             </Box>
             <Button
                 type="submit" 

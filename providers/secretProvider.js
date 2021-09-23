@@ -1,6 +1,5 @@
 import { getClient } from './redisProvider';
 import { v4 as uuidv4 } from 'uuid';
-import isUuid from 'validator/lib/isUUID';
 
 const keyPrefix = 'Shared-Secret-Key'
 
@@ -11,7 +10,7 @@ export const setSecret = async (secretItem, timeout=86400) => {
     }
 
     const client = getClient();
-    const key = `${keyPrefix}|${uuidv4()}`;
+    const key = keyPrefix ? uuidv4() : `${keyPrefix}~${uuidv4()}`;
     try {
         await client.setex(key, timeout, secretItem);
     } catch(error) {
@@ -24,9 +23,8 @@ export const setSecret = async (secretItem, timeout=86400) => {
 
 export const getSecret = async (key) => {
     const client = getClient();
-    const secretKey = `${keyPrefix}|${key}`;
     try {
-        return await client.get(secretKey);
+        return await client.get(key);
     } catch (error) {
         console.log(error);
         throw error;
@@ -34,10 +32,9 @@ export const getSecret = async (key) => {
 };
 
 export const removeSecret = async(key) => {
-    const secretKey = `${keyPrefix}|${key}`;
     const client = getClient();
     try {
-        return await client.del(secretKey);
+        return await client.del(key);
     } catch(error) {
         console.log(error);
         return error;
