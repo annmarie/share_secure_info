@@ -6,7 +6,7 @@ import Message from 'components/Message'
 import HeaderComponent from 'components/header-component'
 import FooterComponent from 'components/footer-component'
 
-export default function Index(props) {
+const SecretComponent = (props) => {
   const [secretData, setSecretData] = useState('');
   const [dataLoaded, setDataLoaded] = useState(false);
 
@@ -30,17 +30,21 @@ export default function Index(props) {
 
   const landingMessage = dataLoaded ? 'Secret message already seen' : 'Loading secret message...'
 
+  return secretData
+    ? <ViewSecret secretData={secretData} onSecretDestroy={handleSecretDestroy} />
+    : <Message text={landingMessage} />
+}
+
+export default function Secret(props) {
+
   return <>
     <Head>
       <title>ShareSecure</title>
     </Head>
-    <HeaderComponent { ...props } />
 
-    { secretData 
-      ? <ViewSecret secretData={secretData} onSecretDestroy={handleSecretDestroy} />
-      : <Message text={landingMessage} /> }
-
-    <FooterComponent { ...props } /> 
+    <HeaderComponent {...props} />
+    <SecretComponent {...props} />
+    <FooterComponent {...props} />
   </>
 }
 
