@@ -10,6 +10,10 @@ export default function Index(props) {
   const [comment, setComment] = useState('');
   const [dataLoaded, setDataLoaded] = useState(false);
 
+  const handleSecretDestroy = () => {
+    setSecretMessage('')
+  }
+
   useEffect(() => {
     async function getSecretMessage() {
       const result = await fetch(`/api/secret?id=${props.query.secret}`);
@@ -28,7 +32,7 @@ export default function Index(props) {
 
   const landingMessage = dataLoaded ? 'Secret message already seen' : 'Loading secret message...'
   return secretMessage 
-    ? <ViewSecret secret={secretMessage} comment={comment} />
+    ? <ViewSecret secret={secretMessage} comment={comment} onSecretDestroy={handleSecretDestroy} />
     : <Message text={landingMessage} />
 }
 
