@@ -5,6 +5,7 @@ import ViewSecret from 'components/ViewSecret'
 import Message from 'components/Message'
 import HeaderComponent from 'components/header-component'
 import FooterComponent from 'components/footer-component'
+import Head from 'next/head'
 
 const SecretComponent = (props) => {
   const [secretData, setSecretData] = useState('');
