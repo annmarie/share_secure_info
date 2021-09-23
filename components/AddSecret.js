@@ -9,9 +9,10 @@ import MenuItem from '@material-ui/core/MenuItem'
 import FormControl from '@material-ui/core/FormControl'
 import FormLabel from '@material-ui/core/FormLabel'
 
-function convertTime(unit, unitType) {
+function convertTime(unitString, unitType) {
     let result;
-
+    const unit = parseInt(unitString)
+    
     if (unitType === 'minutes') {
         result = parseInt(unit) * 60000
     } else if (unitType === 'hours') {
@@ -38,8 +39,8 @@ export default function AddSecret(props) {
   const [instruction, setInstruction] = useState('')
   const [secret, setSecret] = useState('')
   const [secretError, setSecretError] = useState(false)
-  const [unit, setUnit] = useState('')
-  const [unitError, setUnitError] = useState(false)
+  const [duration, setDuration] = useState(10)
+  const [durationError, setDurationError] = useState(false)
   const [unitType, setUnitType] = useState('minutes')
   const { onSecretSubmit } = props
 
@@ -47,15 +48,15 @@ export default function AddSecret(props) {
     e.preventDefault()
 
     setSecretError(false)
-    setUnitError(false)
+    setDurationError(false)
 
     if (secret.trim() === '') {
         setSecretError(true)
     }
-    if (unit.trim() === '' || +unit <= 0) {
-        setUnitError(true)
+    if (duration <= 0) {
+        setDurationError(true)
     }
-    onSecretSubmit(instruction, secret, convertTime(unit, unitType))
+    onSecretSubmit(instruction, secret, convertTime(duration, unitType))
   }
 
   return (
@@ -97,17 +98,18 @@ export default function AddSecret(props) {
             style={{ marginBottom: '48px' }}
         />
 
-        <FormLabel component="legend">Valid Until</FormLabel>
+        <FormLabel component="legend">Valid For</FormLabel>
         <div style={{ marginBottom: '10px', paddingLeft: 0 }}>
             <TextField 
-                onChange={(e) => setUnit(e.target.value)}
-                label="Enter a number"
+                onChange={(e) => setDuration(e.target.value)}
+                label="Enter a positive number"
                 variant="outlined"
                 color="primary"
                 required
                 fullWidth={false}
-                error={unitError}
+                error={durationError}
                 style={{ width: '200px', marginRight: '10px'}}
+                value={duration}
             />
             <FormControl variant='outlined' className={classes.formControl}>
                 <Select
