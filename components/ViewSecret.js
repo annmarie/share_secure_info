@@ -14,9 +14,6 @@ export default function ViewSecret (props) {
     useEffect(() => {
         let interval = setInterval(() => {
             setTick(prevState => prevState - 1)
-            if (tick <= 1) {
-                setDestroySecret(true);
-            }
         }, 1000);
 
         return () => clearInterval(interval);
@@ -30,6 +27,12 @@ export default function ViewSecret (props) {
           });
     }
 
+    useEffect(() => {
+        if (tick < 1) {
+            setDestroySecret(true);
+        }
+    },[tick])
+    
     const unit = tick > 1 ? 'seconds' : 'second';
 
     const commentComponent = (
