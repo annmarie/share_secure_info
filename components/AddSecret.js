@@ -55,7 +55,6 @@ export default function AddSecret(props) {
     if (unit.trim() === '' || +unit <= 0) {
         setUnitError(true)
     }
-    
     onSecretSubmit(instruction, secret, convertTime(unit, unitType))
   }
 

@@ -22,6 +22,14 @@ export default function SecretLink (props) {
           });
     }
 
+    const handleLinkButtonClick = (e) => {
+        navigator.clipboard.writeText(boxRef.current.innerText).then(function() {
+            setCopyConfirmed(true);
+          }, function(err) {
+            console.error('Async: Could not copy text: ', err);
+          });
+    }
+
     return (
         <Container size="sm">
             { copyConfirmed && <Alert onClose={() => setCopyConfirmed(false)}> Content copied to clipboard! </Alert> }
@@ -47,6 +55,14 @@ export default function SecretLink (props) {
                 color="primary" 
                 variant="contained"
                 onClick={handleButtonClick} 
+            >
+                Copy message to clipboard
+            </Button>
+            <Button
+                type="submit" 
+                color="primary" 
+                variant="contained"
+                onClick={handleLinkButtonClick} 
             >
                 Copy message to clipboard
             </Button>
