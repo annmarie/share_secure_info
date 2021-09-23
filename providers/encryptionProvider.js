@@ -2,10 +2,11 @@ import AESEncrypter from 'crypto-js/aes';
 import Utf8 from 'crypto-js/enc-utf8';
 
 // needs to go somewhere in config/ env var
-const appKey = process.env.ENCRYPTION_APP_KEY || '';
+const appKey = process.env.ENCRYPTION_APP_KEY;
 
 export const encryptSecret = (content) => {
-    // comment is optional
+    if(!appKey) throw new Error('appKey not found');
+    
     if(content == null) {
         throw new Error(`Invalid data. Comment: ${comment} | Message: ${message}`);
     }
