@@ -15,6 +15,10 @@ export const encryptSecret = (content) => {
 }
 
 export const decryptSecret = (cipherText) => {
+    const appKey = process.env.ENCRYPTION_APP_KEY
+
+    if(!appKey) throw new Error('appKey not found')
+    
     if(!cipherText) {
         throw new Error(`Invalid cipher text: ${cipherText}`)
     }
