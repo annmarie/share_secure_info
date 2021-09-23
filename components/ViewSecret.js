@@ -66,7 +66,7 @@ export default function ViewSecret (props) {
 
             { comment.trim().length && commentComponent }
 
-            <Box ref={boxRef} component="p" sx={{ border: '1px dashed grey', marginTop: '10px', padding: '5px', overflowWrap: 'anywhere' }}>
+            <Box ref={boxRef} component="div" sx={{ border: '1px dashed grey', marginTop: '10px', padding: '5px', overflowWrap: 'anywhere' }}>
                 <pre>
                     {secret}
                 </pre>
