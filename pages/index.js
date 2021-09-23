@@ -3,6 +3,7 @@ import { useEffect } from 'react'
 import Head from 'next/head'
 import appPageHandler from 'middleware/app-page-handler'
 import FooterComponent from 'components/footer-component'
+import HeaderComponent from 'components/header-component'
 import StepsComponent from 'components/steps-component'
 import HomeComponent from "components/home-component"
 
@@ -20,9 +21,10 @@ export default function Index(props) {
   // render html page
   return <>
     <Head>
-      <title>Share Secure Info</title>
+      <title>ShareSecure</title>
     </Head>
 
+    <HeaderComponent { ...props } />
     <HomeComponent { ...props } />
     <StepsComponent { ...props} />
     <FooterComponent { ...props } /> 

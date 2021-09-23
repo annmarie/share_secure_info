@@ -1,5 +1,6 @@
 
 const appConfig = {
+    useHeader: true,
     useFooter: false,
     footerText: 'This is the footer',
     navLinks: [
