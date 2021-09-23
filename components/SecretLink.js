@@ -55,6 +55,7 @@ export default function SecretLink (props) {
                 color="primary" 
                 variant="contained"
                 onClick={handleButtonClick} 
+                style={{ marginRight: '10px' }}
             >
                 Copy message to clipboard
             </Button>
