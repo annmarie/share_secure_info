@@ -7,4 +7,4 @@
 
 ### TECHNICAL
 * Add tests. We started to add tests but abandon that in the interest of time.
-* Add linting.
+* Add linting. We didn't want to slow down the process.
