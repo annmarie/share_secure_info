@@ -1,17 +1,15 @@
 import _ from 'lodash'
 import { useState, useEffect } from 'react'
 import appPageHandler from 'middleware/app-page-handler'
-import { decryptSecret } from 'providers/encryptionProvider';
 import ViewSecret from 'components/ViewSecret'
 import Message from 'components/Message'
 
 export default function Index(props) {
-  const [secretMessage, setSecretMessage] = useState('');
-  const [comment, setComment] = useState('');
+  const [secretData, setSecretData] = useState('');
   const [dataLoaded, setDataLoaded] = useState(false);
 
   const handleSecretDestroy = () => {
-    setSecretMessage('')
+    setSecretData('')
   }
 
   useEffect(() => {
@@ -20,9 +18,7 @@ export default function Index(props) {
       const data = await result.json();
 
       if (data.val) {
-        const decryptedData = decryptSecret(data.val)
-        setSecretMessage(decryptedData.link)
-        setComment(decryptedData.comment)
+        setSecretData(data.val);
       }
     }
 
@@ -31,8 +27,8 @@ export default function Index(props) {
   }, [])
 
   const landingMessage = dataLoaded ? 'Secret message already seen' : 'Loading secret message...'
-  return secretMessage 
-    ? <ViewSecret secret={secretMessage} comment={comment} onSecretDestroy={handleSecretDestroy} />
+  return secretData 
+    ? <ViewSecret secretData={secretData} onSecretDestroy={handleSecretDestroy} />
     : <Message text={landingMessage} />
 }
 
