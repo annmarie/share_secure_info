@@ -1,6 +1,9 @@
 # Shared Secure Information 
 Self destructing link application
 
+## Demo Server
+https://share-secure-info.vercel.app/
+
 ## What can it do?
 * Quickly create + share sensitive information
 * Intuitive for both person creating the secret & receiving the secret
