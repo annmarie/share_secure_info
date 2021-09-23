@@ -16,7 +16,7 @@ export const encryptSecret = (content) => {
 
 export const decryptSecret = (cipherText) => {
     if(!cipherText) {
-        throw new Error(`Invalid cypher text: ${cipherText}`)
+        throw new Error(`Invalid cipher text: ${cipherText}`)
     }
 
     const bytes = AESEncrypter.decrypt(cipherText, appKey)
