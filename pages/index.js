@@ -7,7 +7,7 @@ import StepsComponent from 'components/steps-component'
 import HomeComponent from "components/home-component"
 
 export default function Index(props) {
-  // this is simpilar to using componentDidMount
+  // this is similar to using componentDidMount
   useEffect(() => {
     // this is required for MUI
     // Remove the server-side injected CSS.
