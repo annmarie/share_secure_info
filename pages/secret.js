@@ -1,7 +1,6 @@
 import _ from 'lodash'
 import { useState, useEffect } from 'react'
 import appPageHandler from 'middleware/app-page-handler'
-import { decryptSecret } from 'providers/encryptionProvider';
 import ViewSecret from 'components/ViewSecret'
 import Message from 'components/Message'
 
