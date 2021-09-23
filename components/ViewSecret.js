@@ -12,7 +12,6 @@ export default function ViewSecret (props) {
     const [destroySecret, setDestroySecret] = useState(false);
     const [copyConfirmed, setCopyConfirmed] = useState(false);
     const { secretData, onSecretDestroy } = props;
-    
 
     const decrypted = decryptSecret(secretData);
     let secret = decrypted.link;
