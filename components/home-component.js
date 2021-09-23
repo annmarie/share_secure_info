@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import AddSecret from './AddSecret';
 import SecretLink from './SecretLink';
 import { encryptSecret } from 'providers/encryptionProvider';

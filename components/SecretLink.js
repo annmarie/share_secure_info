@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react'
+import { useState, useRef } from 'react'
 import Container from '@material-ui/core/Container'
 import Alert from '@material-ui/lab/Alert'
 import Typography from '@material-ui/core/Typography'
