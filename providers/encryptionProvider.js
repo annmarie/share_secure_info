@@ -1,24 +1,24 @@
-import AESEncrypter from 'crypto-js/aes';
-import Utf8 from 'crypto-js/enc-utf8';
+import AESEncrypter from 'crypto-js/aes'
+import Utf8 from 'crypto-js/enc-utf8'
 
-// needs to go somewhere in config/ env var
-const appKey = process.env.ENCRYPTION_APP_KEY;
 
 export const encryptSecret = (content) => {
-    if(!appKey) throw new Error('appKey not found');
+    const appKey = process.env.ENCRYPTION_APP_KEY
+
+    if(!appKey) throw new Error('appKey not found')
     
     if(content == null) {
-        throw new Error(`Invalid data. Comment: ${comment} | Message: ${message}`);
+        throw new Error(`Invalid data. Comment: ${comment} | Message: ${message}`)
     }
 
-    return AESEncrypter.encrypt(JSON.stringify(content), appKey).toString();
-};
+    return AESEncrypter.encrypt(JSON.stringify(content), appKey).toString()
+}
 
 export const decryptSecret = (cipherText) => {
     if(!cipherText) {
-        throw new Error(`Invalid cypher text: ${cipherText}`);
+        throw new Error(`Invalid cypher text: ${cipherText}`)
     }
 
-    const bytes = AESEncrypter.decrypt(cipherText, appKey);
-    return JSON.parse(bytes.toString(Utf8));
-};
+    const bytes = AESEncrypter.decrypt(cipherText, appKey)
+    return JSON.parse(bytes.toString(Utf8))
+}
