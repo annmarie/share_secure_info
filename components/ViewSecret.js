@@ -4,13 +4,19 @@ import Alert from '@material-ui/lab/Alert'
 import Typography from '@material-ui/core/Typography'
 import Box from '@material-ui/core/Box'
 import Button from '@material-ui/core/Button'
+import { decryptSecret } from 'providers/encryptionProvider';
 
 export default function ViewSecret (props) {
     let boxRef = useRef();
     const [tick, setTick] = useState(30);
     const [destroySecret, setDestroySecret] = useState(false);
     const [copyConfirmed, setCopyConfirmed] = useState(false);
-    const { secret, comment, onSecretDestroy } = props;
+    const { secretData, onSecretDestroy } = props;
+    
+
+    const decrypted = decryptSecret(secretData);
+    let secret = decrypted.link;
+    let comment = decrypted.comment;
 
     useEffect(() => {
         let interval = setInterval(() => {
