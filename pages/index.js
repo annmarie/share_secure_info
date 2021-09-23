@@ -1,6 +1,6 @@
-import React from 'react'
-import Head from 'next/head'
 import _ from 'lodash'
+import { useEffect } from 'react'
+import Head from 'next/head'
 import appPageHandler from 'middleware/app-page-handler'
 import FooterComponent from 'components/footer-component'
 import StepsComponent from 'components/steps-component'
@@ -8,7 +8,7 @@ import HomeComponent from "components/home-component"
 
 export default function Index(props) {
   // this is simpilar to using componentDidMount
-  React.useEffect(() => {
+  useEffect(() => {
     // this is required for MUI
     // Remove the server-side injected CSS.
     const jssStyles = document.querySelector('#jss-server-side');
