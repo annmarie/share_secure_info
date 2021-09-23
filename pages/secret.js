@@ -1,5 +1,5 @@
 import _ from 'lodash'
-import React, { useState, useEffect } from 'react'
+import { useState, useEffect } from 'react'
 import appPageHandler from 'middleware/app-page-handler'
 import { decryptSecret } from 'providers/encryptionProvider';
 import ViewSecret from 'components/ViewSecret'
@@ -32,7 +32,6 @@ export default function Index(props) {
     : <Message text={landingMessage} />
 }
 
-// using this instead of `getInitialProps`
 export function getServerSideProps(ctx) {
   // middleware
   appPageHandler(ctx.req, ctx.res)

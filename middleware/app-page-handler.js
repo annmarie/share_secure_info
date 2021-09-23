@@ -1,11 +1,9 @@
 import appConfig from 'app-config'
-import next from 'next';
-import nextConnect from "next-connect";
-const appPageHandler = nextConnect();
+import next from 'next'
 
-appPageHandler.use((req, res) => {
+const appPageHandler = () => (req, res) => {
   req.appConfig = appConfig
   return next(req, res)
-})
+}
 
-export default appPageHandler;
+export default appPageHandler
