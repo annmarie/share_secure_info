@@ -1,6 +1,5 @@
 import { createClient } from 'async-redis';
 
-// simpler asynchronous connection
 export const getClient = () => {
 
     const host = process.env.REDIS_HOST || 'localhost'
