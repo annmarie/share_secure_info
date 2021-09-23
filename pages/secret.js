@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react'
 import appPageHandler from 'middleware/app-page-handler'
 import { decryptSecret } from 'providers/encryptionProvider';
 import ViewSecret from 'components/ViewSecret'
-//import Message from 'components/Message'
+import Message from 'components/Message'
 
 export default function Index(props) {
   const [secretMessage, setSecretMessage] = useState('');
