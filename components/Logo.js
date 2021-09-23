@@ -11,28 +11,34 @@ const Logo = ({ width='52', height='52' }) => {
     >
     <defs>
       <linearGradient
-        gradientUnits='objectBoundingBox'
-        id='b'
-        spreadMethod='pad'
-        x1='0%'
-        x2='100%'
-        y1='0%'
-        y2='0%'
-      >
-        <stop offset='0%' stopColor='#add8e6' />
-        <stop offset='100%' stopColor='#ef5b2b' />
-      </linearGradient>
-      <linearGradient
-        gradientUnits='objectBoundingBox'
-        id='a'
-        spreadMethod='pad'
+        gradientUnits="objectBoundingBox"
+        id="a"
+        spreadMethod="pad"
         x1={0}
-        x2='100%'
+        x2="100%"
         y1={0}
         y2={0}
       >
-        <stop offset='0%' stopColor='#add8e6' />
-        <stop offset='100%' stopColor='#ED6E46' />
+        <stop offset="0%" stopColor="#3F61B5" />
+        <stop offset="100%" stopColor="#F50057" />
+      </linearGradient>
+      <linearGradient
+        gradientUnits="objectBoundingBox"
+        id="b"
+        spreadMethod="pad"
+        x1="0%"
+        x2="100%"
+        y1="0%"
+        y2="0%"
+      >
+        <stop
+          offset="0%"
+          stopColor="#3f51b5"
+          style={{
+            stopOpacity: 1,
+          }}
+        />
+        <stop offset="100%" stopColor="#F50057" />
       </linearGradient>
     </defs>
     <circle
