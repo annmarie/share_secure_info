@@ -3,6 +3,8 @@ import { useState, useEffect } from 'react'
 import appPageHandler from 'middleware/app-page-handler'
 import ViewSecret from 'components/ViewSecret'
 import Message from 'components/Message'
+import HeaderComponent from 'components/header-component'
+import FooterComponent from 'components/footer-component'
 
 export default function Index(props) {
   const [secretData, setSecretData] = useState('');
@@ -27,9 +29,19 @@ export default function Index(props) {
   }, [])
 
   const landingMessage = dataLoaded ? 'Secret message already seen' : 'Loading secret message...'
-  return secretData 
-    ? <ViewSecret secretData={secretData} onSecretDestroy={handleSecretDestroy} />
-    : <Message text={landingMessage} />
+
+  return <>
+    <Head>
+      <title>ShareSecure</title>
+    </Head>
+    <HeaderComponent { ...props } />
+
+    { secretData 
+      ? <ViewSecret secretData={secretData} onSecretDestroy={handleSecretDestroy} />
+      : <Message text={landingMessage} /> }
+
+    <FooterComponent { ...props } /> 
+  </>
 }
 
 export function getServerSideProps(ctx) {
