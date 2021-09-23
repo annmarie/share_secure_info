@@ -1,0 +1,42 @@
+.footer {
+  border-top: 5px double orange;
+  padding: 16px 0;
+}
+
+.footerUl {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 0;
+}
+
+.copyright {
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  padding: 0;
+}
+
+.teamName {
+  font: italic 24px Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  color: orangered;
+  display: block;
+  padding-right: 8px;
+
+  &__introduction {
+    font: italic 20px Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    padding-right: 8px;
+    color: #000;
+    display: block;
+    font-style: normal;
+  }
+}
+
+.tiny {
+  font-size: 12px;
+  text-align: center;
+}
+
+.heart {
+  display: block;
+  padding:0 4px;
+}
