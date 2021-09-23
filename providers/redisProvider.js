@@ -9,5 +9,5 @@ export const getClient = () => {
     const password = process.env.REDIS_PASSWORD
     if (password) return createClient(`redis://${username}:${password}@${host}:${port}`)
 
-    return createClient();
+    return createClient(`redis://${host}:${port}`);
 }
