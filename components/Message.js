@@ -4,7 +4,7 @@ import Typography from '@material-ui/core/Typography'
 
 export default function Message (props) {
     return (
-        <Container size="sm">
+        <Container size="sm" style={{ textAlign: 'center' }}>
             <Typography
                 variant="h4" 
                 color="textPrimary"

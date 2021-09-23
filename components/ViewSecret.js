@@ -83,7 +83,7 @@ export default function ViewSecret (props) {
     );
 
     const invalidComponent = (
-        <Container size="sm">
+        <Container size="sm" style={{ textAlign: 'center' }}>
             <Typography
                 variant="h4" 
                 color="textPrimary"
