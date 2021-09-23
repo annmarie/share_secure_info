@@ -4,6 +4,7 @@ module.exports = (phase, { defaultConfig }) => {
 
   const newConfig = {
     env: { // set env vars
+      ENCRYPTION_APP_KEY: process.env.ENCRYPTION_APP_KEY,
       phase
     },
     async rewrites() {
@@ -22,5 +23,5 @@ module.exports = (phase, { defaultConfig }) => {
     },
   };
 
-  return _.merge(defaultConfig, newConfig); 
+  return _.merge(defaultConfig, newConfig);
 }
