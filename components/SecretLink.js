@@ -23,7 +23,7 @@ export default function SecretLink (props) {
     }
 
     const handleLinkButtonClick = (e) => {
-        navigator.clipboard.writeText(boxRef.current.innerText).then(function() {
+        navigator.clipboard.writeText(e).then(function() {
             setCopyConfirmed(true);
           }, function(err) {
             console.error('Async: Could not copy text: ', err);
@@ -62,9 +62,9 @@ export default function SecretLink (props) {
                 type="submit" 
                 color="primary" 
                 variant="contained"
-                onClick={handleLinkButtonClick} 
+                onClick={handleLinkButtonClick(`${baseUrl}/${props.link}`)} 
             >
-                Copy message to clipboard
+                Copy Link to clipboard
             </Button>
         </Container>
     );
