@@ -75,7 +75,8 @@ export default function ViewSecret (props) {
                 type="submit" 
                 color="primary" 
                 variant="contained"
-                onClick={handleButtonClick} 
+                onClick={handleButtonClick}
+                style={{ marginTop: '10px'}}
             >
                 Copy secret to clipboard
             </Button>
