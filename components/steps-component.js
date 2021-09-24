@@ -1,12 +1,11 @@
 import _ from 'lodash'
-import Logo from 'components/Logo'
 import styles from 'styles/components/Steps.module.scss'
 
 export default function StepsComponent(props) {
 
   return <>
     <div>
-      <h2>Share Secure <Logo /></h2>
+      <h2>Self-destructing links</h2>
       <p>On occasion, there is a need for sharing sensitive information between co-workers.  With this app, you can send this info --a "secret"-- directly to a person via a link that destroys itself after a specified amount of time so that no one else can access it.</p>
 
       <h2>How to use</h2>

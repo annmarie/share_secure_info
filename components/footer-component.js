@@ -1,4 +1,3 @@
-import { ServerStyleSheets } from '@material-ui/styles';
 import _ from 'lodash'
 import styles from 'styles/components/Footer.module.scss'
 
