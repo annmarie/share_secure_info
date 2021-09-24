@@ -6,11 +6,12 @@ export default function FooterComponent(props) {
 
   const teamName = props.teamName;
   const teamMembers = props.teamMembers;
+  const githubRepo = props.githubRepo
 
   return <>
     <div className={styles.footer}>
       <div className={styles.copyright}>Created with much <span className={styles.heart}> &#10084; </span> by <span className={styles.teamName}>{teamName}</span> for the MeredithCorp 2021 Hackathon</div>
-      <div className={styles.copyright}>September 20th - 24th, 2021</div>
+      <div className={styles.copyright}>September 20th - 24th, 2021 <span className={styles.tiny}><a href={githubRepo}>{githubRepo}</a></span></div>
       <br/>
       <div className={styles.copyright}><span className={styles.teamName__introduction}>{teamName}</span> is:</div>
 

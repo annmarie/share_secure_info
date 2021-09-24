@@ -15,7 +15,7 @@ const appConfig = {
         'Meghal Modi',
         'Rakesh Malik',
     ],
-    githubLink: 'https://github.com/annmarie/share_secure_info',
+    githubRepo: 'https://github.com/annmarie/share_secure_info',
 }
 
 export default appConfig
