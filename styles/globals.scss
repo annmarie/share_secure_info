@@ -2,7 +2,19 @@ html,
 body {
   font-family: 'SF Pro Text', 'SF Pro Icons', 'Helvetica Neue', 'Helvetica',
   'Arial', sans-serif;
-  background-image: repeating-linear-gradient(112.5deg, hsla(19,0%,93%,0.2) 0px, hsla(19,0%,93%,0.2) 0px,transparent 0px, transparent 1px,hsla(19,0%,93%,0.2) 1px, hsla(19,0%,93%,0.2) 4px,transparent 4px, transparent 5px,hsla(19,0%,93%,0.2) 5px, hsla(19,0%,93%,0.2) 8px),repeating-linear-gradient(0deg, hsla(19,0%,93%,0.2) 0px, hsla(19,0%,93%,0.2) 0px,transparent 0px, transparent 1px,hsla(19,0%,93%,0.2) 1px, hsla(19,0%,93%,0.2) 4px,transparent 4px, transparent 5px,hsla(19,0%,93%,0.2) 5px, hsla(19,0%,93%,0.2) 8px),linear-gradient(135deg, rgb(238, 238, 238),rgb(121, 121, 121));
+  background-image: repeating-linear-gradient(112.5deg, hsla(19,0%,93%,0.2) 0px, 
+  hsla(19,0%,93%,0.2) 0px,transparent 0px, transparent 1px,hsla(19,0%,93%,0.2) 1px, 
+  hsla(19,0%,93%,0.2) 4px,transparent 4px, transparent 5px,
+  hsla(19,0%,93%,0.2) 5px, 
+  hsla(19,0%,93%,0.2) 8px),
+  repeating-linear-gradient(0deg, hsla(19,0%,93%,0.2) 0px, 
+  hsla(19,0%,93%,0.2) 0px,transparent 0px, transparent 1px,
+  hsla(19,0%,93%,0.2) 1px, 
+  hsla(19,0%,93%,0.2) 4px,transparent 4px, transparent 5px,
+  hsla(19,0%,93%,0.2) 5px, 
+  hsla(19,0%,93%,0.2) 8px),
+  linear-gradient(135deg, rgb(238, 238, 238),
+  rgb(121, 121, 121));
 }
 
 #__next {
