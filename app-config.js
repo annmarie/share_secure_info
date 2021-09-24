@@ -2,10 +2,8 @@
 const appConfig = {
     useHeader: true,
     useFooter: true,
-    footerText: 'This is the footer',
-    navLinks: [
-        { id: 1, title: 'home', path: '/' },
-    ],
+    navLinks: [ { id: 1, title: 'home', path: '/' } ],
+    teamName: 'TEAM SELF DESTRUCTION',
     teamMembers: [
         'Abby Sobolevsky',
         'Alejandro Hoyos',
@@ -17,6 +15,7 @@ const appConfig = {
         'Meghal Modi',
         'Rakesh Malik',
     ],
+    githubLink: 'https://github.com/annmarie/share_secure_info',
 }
 
-export default appConfig 
+export default appConfig
