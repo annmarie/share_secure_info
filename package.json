@@ -5,7 +5,10 @@
     "build": "next build",
     "start": "next start",
     "test": "jest",
-    "test-all": "yarn lint && yarn type-check && yarn test"
+    "test-all": "yarn lint && yarn type-check && yarn test",
+    "lint": "next lint --cache --format=pretty",
+    "lint-fix": "next lint --format=pretty --fix",
+    "postlint-fix": "prettier --ignore-path .eslintignore --write \"**/*.{*{js,jsx,json},babelrc,eslintrc,prettierrc,stylelintrc}\""
   },
   "dependencies": {
     "@azure/msal-browser": "^2.17.0",
@@ -22,7 +25,14 @@
     "react-dom": "^17.0.2",
     "sass": "^1.41.1",
     "swr": "^1.0.1",
-    "uuid": "^8.3.2",
-    "validator": "^13.6.0"
+    "uuid": "^8.3.2"
+  },
+  "devDependencies": {
+    "eslint": "^7.32.0",
+    "eslint-config-next": "11.1.2",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-formatter-pretty": "^4.1.0",
+    "eslint-plugin-prettier": "^4.0.0",
+    "prettier": "^2.4.1"
   }
 }

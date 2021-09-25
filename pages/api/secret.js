@@ -1,20 +1,20 @@
-import apiPageHandler from 'middleware/api-page-handler'
-import { getSecret, setSecret, removeSecret } from '../../providers/secretProvider'
-import _ from 'lodash'
+import apiPageHandler from "middleware/api-page-handler";
+import { getSecret, setSecret, removeSecret } from "../../providers/secretProvider";
 
 async function requestHandler(req, res) {
-  const method = req.method
+  const method = req.method;
   switch (method) {
-    case 'POST':
-      const output = { status: "New" }
+    case "POST": {
       // save stuff to redis
       const id = await setSecret(req.body.msg, req.body.expiration);
-      res.status(200).json({ id })
-      break
-    default: 
+      res.status(200).json({ id });
+      break;
+    }
+    default: {
       const val = await getSecret(req.query.id);
       await removeSecret(req.query.id);
-      res.status(200).json({ val })
+      res.status(200).json({ val });
+    }
   }
 }
 

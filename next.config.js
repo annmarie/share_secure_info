@@ -1,9 +1,9 @@
-const _ = require('lodash')
+const _ = require("lodash");
 
 module.exports = (phase, { defaultConfig }) => {
-
   const newConfig = {
-    env: { // set env vars
+    env: {
+      // set env vars
       ENCRYPTION_APP_KEY: process.env.ENCRYPTION_APP_KEY,
       phase
     },
@@ -11,8 +11,8 @@ module.exports = (phase, { defaultConfig }) => {
       return {
         fallback: [
           {
-            source: '/shh/:secret',
-            destination: "/secret",
+            source: "/shh/:secret",
+            destination: "/secret"
           },
           {
             source: '/',
@@ -24,4 +24,4 @@ module.exports = (phase, { defaultConfig }) => {
   };
 
   return _.merge(defaultConfig, newConfig);
-}
+};

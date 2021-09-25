@@ -1,4 +1,3 @@
-
 const appConfig = {
     useHeader: true,
     useFooter: true,
@@ -17,4 +16,4 @@ const appConfig = {
     githubRepo: 'https://github.com/annmarie/share_secure_info',
 }
 
-export default appConfig
+export default appConfig;
