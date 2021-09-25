@@ -7,7 +7,6 @@ import StepsComponent from "components/steps-component";
 import HomeComponent from "components/home-component";
 
 export default function Index(props) {
-  // this is similar to using componentDidMount
   useEffect(() => {
     // this is required for MUI
     // Remove the server-side injected CSS.
@@ -17,7 +16,6 @@ export default function Index(props) {
     }
   }, []);
 
-  // render html page
   return (
     <>
       <Head>
@@ -32,7 +30,6 @@ export default function Index(props) {
   );
 }
 
-// using this instead of `getInitialProps`
 export function getServerSideProps(ctx) {
   // middleware
   appPageHandler(ctx.req, ctx.res);
