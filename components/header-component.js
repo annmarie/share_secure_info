@@ -9,7 +9,9 @@ export default function HeaderComponent(props) {
     <div className={styles.logo}>
       <h2>
         <Link href="/">
-          <a>ShareSecure <Logo {...props} /></a>
+          <a>
+            ShareSecure <Logo {...props} />
+          </a>
         </Link>
       </h2>
     </div>
