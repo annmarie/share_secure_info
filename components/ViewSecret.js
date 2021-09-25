@@ -22,13 +22,8 @@ export default function ViewSecret(props) {
       setTick((prevState) => prevState - 1);
     }, 1000);
 
-      if (tick < 1) {
-          setDestroySecret(true);
-          onSecretDestroy();
-      }
-
-      return () => clearInterval(interval);
-  }, [tick, onSecretDestroy]);
+    return () => clearInterval(interval);
+  }, []);
 
   const handleButtonClick = () => {
     navigator.clipboard.writeText(boxRef.current.innerText).then(
@@ -41,17 +36,21 @@ export default function ViewSecret(props) {
     );
   };
 
-  const unit = tick > 1 ? 'seconds' : 'second';
+  useEffect(() => {
+    if (tick < 1) {
+      setDestroySecret(true);
+      onSecretDestroy();
+    }
+  }, [tick, onSecretDestroy]);
+
+  const unit = tick > 1 ? "seconds" : "second";
   const commentComponent = (
-      <>
-          <Typography
-              variant="h5" 
-              color="textPrimary"
-          >
-              Instructions from secret generator:
-          </Typography>
-          <p>{comment}</p>
-      </>
+    <>
+      <Typography variant="h5" color="textPrimary">
+        Instructions from secret generator:
+      </Typography>
+      <p>{comment}</p>
+    </>
   );
 
   const validComponent = (

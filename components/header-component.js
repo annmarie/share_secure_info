@@ -1,5 +1,6 @@
 import Logo from "svg/logo";
 import styles from "styles/components/Header.module.scss";
+import Link from "next/link";
 
 export default function HeaderComponent(props) {
   if (!props.useHeader) return "";
@@ -7,8 +8,9 @@ export default function HeaderComponent(props) {
   return (
     <div className={styles.logo}>
       <h2>
-        ShareSecure <Logo {...props} />
-        <a href="/">ShareSecure <Logo { ...props } /></a>
+        <Link href="/">
+          <a>ShareSecure <Logo {...props} /></a>
+        </Link>
       </h2>
     </div>
   );
