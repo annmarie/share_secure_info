@@ -22,8 +22,13 @@ export default function ViewSecret (props) {
             setTick(prevState => prevState - 1)
         }, 1000);
 
+        if (tick < 1) {
+            setDestroySecret(true);
+            onSecretDestroy();
+        }
+
         return () => clearInterval(interval);
-    }, []);
+    }, [tick]);
 
     const handleButtonClick = (e) => {
         navigator.clipboard.writeText(boxRef.current.innerText).then(function() {
@@ -33,13 +38,6 @@ export default function ViewSecret (props) {
           });
     }
 
-    useEffect(() => {
-        if (tick < 1) {
-            setDestroySecret(true);
-            onSecretDestroy();
-        }
-    },[tick])
-    
     const unit = tick > 1 ? 'seconds' : 'second';
     const commentComponent = (
         <>

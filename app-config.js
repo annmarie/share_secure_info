@@ -2,7 +2,6 @@
 const appConfig = {
     useHeader: true,
     useFooter: true,
-    navLinks: [ { id: 1, title: 'home', path: '/' } ],
     teamName: 'TEAM SELF DESTRUCTION',
     teamMembers: [
         'Abby Sobolevsky',

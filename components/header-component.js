@@ -6,6 +6,6 @@ export default function HeaderComponent(props) {
   if (!props.useHeader) return ''
 
   return <div className={styles.logo}>
-    <h2>ShareSecure <Logo { ...props } /></h2>
+    <h2><a href="/">ShareSecure <Logo { ...props } /></a></h2>
   </div>
 }
