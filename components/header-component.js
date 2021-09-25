@@ -1,6 +1,5 @@
-import _ from 'lodash'
-import Logo from 'svg/logo'
-import styles from 'styles/components/Header.module.scss'
+import Logo from "svg/logo";
+import styles from "styles/components/Header.module.scss";
 
 export default function HeaderComponent(props) {
   if (!props.useHeader) return "";
