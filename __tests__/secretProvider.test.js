@@ -1,19 +1,27 @@
 jest.mock('redis', () => jest.requireActual('redis-mock'));
-jest.mock("../providers/secretProvider")
-import { setSecret } from "../providers/secretProvider";
+import { setSecret, getSecret } from "../providers/secretProvider";
 
-describe("set Secret", () => {
-    describe("save the message to redis", () => {
-        it("saves the message to redis", async () => {
-            const msg = 'test message'
-            const exp = 1000
+describe("Secret processing", () => {
+  const msg = 'test message'
+  const exp = 1000
+  describe("save the message to redis", () => {
+    it("save the message to redis", async () => {
+      // act
+      const key = await setSecret(msg, exp);
 
-            // act
-            await setSecret(msg, exp);
+      //assert
+      expect(typeof key).toBe('string');
+    });
+  })
 
-            //assert
-            expect(setSecret).toHaveBeenCalled();
+  describe("get the message from redis", () => {
+    it("get the message from redis", async () => {
+      // act
+      const key = await setSecret(msg, exp);
+      const secret = await getSecret(key);
 
-        });
-    })
+      //assert
+      expect(secret).toBe('test message');
+    });
+  })
 });
