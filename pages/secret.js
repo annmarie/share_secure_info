@@ -46,7 +46,7 @@ export default function Secret(props) {
     if (jssStyles) {
       jssStyles.parentElement.removeChild(jssStyles);
     }
-  }, [])
+  }, []);
 
   return (
     <>
