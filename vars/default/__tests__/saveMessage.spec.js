@@ -1,5 +1,5 @@
 //const redisClientAsync = require('../../../middleware/redisClientAsync')
-import saveMessage from '../../../pages/api/saveMessage'
+import saveMessage from "../../../pages/api/saveMessage";
 
 //console.log(redisClientAsync)
 
@@ -16,7 +16,7 @@ import saveMessage from '../../../pages/api/saveMessage'
 
 //             // act
 //             await saveMessage(req);
-            
+
 //             //assert
 //             expect(setValue).toHaveBeenCalledOnce();
 //         });

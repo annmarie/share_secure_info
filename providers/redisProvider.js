@@ -1,12 +1,11 @@
-import { createClient } from 'async-redis';
+import { createClient } from "async-redis";
 
 export const getClient = () => {
+  const host = process.env.REDIS_HOST || "localhost";
+  const port = process.env.REDIS_PORT || "6379";
+  const username = "";
+  const password = process.env.REDIS_PASSWORD;
+  if (password) return createClient(`redis://${username}:${password}@${host}:${port}`);
 
-    const host = process.env.REDIS_HOST || 'localhost'
-    const port = process.env.REDIS_PORT || '6379'
-    const username = ""
-    const password = process.env.REDIS_PASSWORD
-    if (password) return createClient(`redis://${username}:${password}@${host}:${port}`)
-
-    return createClient(`redis://${host}:${port}`);
-}
+  return createClient(`redis://${host}:${port}`);
+};
