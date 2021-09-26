@@ -18,11 +18,11 @@ function ShareSecureApp({ Component, pageProps }) {
   const theme = createTheme({
     palette: {
       primary: {
-        main: "#673ab7",
-      },
-    },
+        main: "#673ab7"
+      }
+    }
   });
-  
+
   return (
     <>
       <Head>
