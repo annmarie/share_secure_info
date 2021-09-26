@@ -3,7 +3,7 @@ import AddSecret from "./AddSecret";
 import SecretLink from "./SecretLink";
 import { encryptSecret } from "providers/encryptionProvider";
 
-export default function HomeComponent() {
+export default function FormComponent() {
   const [link, setLink] = useState("");
   const [validUntil, setValidUntil] = useState("");
 

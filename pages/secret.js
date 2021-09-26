@@ -1,11 +1,8 @@
 import _ from "lodash";
-import { useState, useEffect } from "react";
 import appPageHandler from "middleware/app-page-handler";
+import { useState, useEffect } from "react";
 import ViewSecret from "components/ViewSecret";
 import Message from "components/Message";
-import HeaderComponent from "components/header-component";
-import FooterComponent from "components/footer-component";
-import Head from "next/head";
 
 const SecretComponent = (props) => {
   const [secretData, setSecretData] = useState("");
@@ -39,26 +36,7 @@ const SecretComponent = (props) => {
 };
 
 export default function Secret(props) {
-  useEffect(() => {
-    // this is required for MUI
-    // Remove the server-side injected CSS.
-    const jssStyles = document.querySelector("#jss-server-side");
-    if (jssStyles) {
-      jssStyles.parentElement.removeChild(jssStyles);
-    }
-  }, []);
-
-  return (
-    <>
-      <Head>
-        <title>ShareSecure</title>
-      </Head>
-
-      <HeaderComponent {...props} />
-      <SecretComponent {...props} />
-      <FooterComponent {...props} />
-    </>
-  );
+  return <SecretComponent {...props} />;
 }
 
 export function getServerSideProps(ctx) {
