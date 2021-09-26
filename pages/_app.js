@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import Head from "next/head";
-import { MuiThemeProvider, createTheme } from '@material-ui/core/styles';
+import { MuiThemeProvider, createTheme } from "@material-ui/core/styles";
 import HeaderComponent from "components/header-component";
 import FooterComponent from "components/footer-component";
 import "styles/globals.scss";
