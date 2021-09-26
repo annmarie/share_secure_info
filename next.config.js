@@ -15,12 +15,12 @@ module.exports = (phase, { defaultConfig }) => {
             destination: "/secret"
           },
           {
-            source: '/',
-            destination: "/",
-          },
-        ],
-      }
-    },
+            source: "/",
+            destination: "/"
+          }
+        ]
+      };
+    }
   };
 
   return _.merge(defaultConfig, newConfig);
