@@ -16,8 +16,9 @@ export default function FooterComponent(props) {
           <span className={styles.teamName}>{teamName}</span> for the MeredithCorp 2021 Hackathon
         </div>
         <div className={styles.copyright}>
-          September 20th - 24th, 2021{" "}
-          <span className={styles.tiny}>
+          September 20th - 24th, 2021
+        <br />
+          <span className={styles.copyright}>
             <a href={githubRepo}>{githubRepo}</a>
           </span>
         </div>
