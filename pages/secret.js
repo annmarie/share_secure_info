@@ -36,7 +36,7 @@ const SecretComponent = (props) => {
 };
 
 export default function Secret(props) {
-  return (<SecretComponent {...props} />);
+  return <SecretComponent {...props} />;
 }
 
 export function getServerSideProps(ctx) {

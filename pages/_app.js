@@ -11,7 +11,7 @@ function ShareSecureApp({ Component, pageProps }) {
       </Head>
       <HeaderComponent {...pageProps} />
       <Component {...pageProps} />
-      <FooterComponent {...props} />
+      <FooterComponent {...pageProps} />
     </>
   );
 }
