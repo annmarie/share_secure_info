@@ -1,6 +1,5 @@
-import { Component } from 'react';
-import { MuiThemeProvider, createTheme } from '@material-ui/core/styles';
-
+import { Component } from "react";
+import { MuiThemeProvider, createTheme } from "@material-ui/core/styles";
 
 class Layout extends Component {
   render() {
@@ -12,11 +11,7 @@ class Layout extends Component {
       }
     });
 
-    return(
-      <MuiThemeProvider theme={theme}>
-        {this.props.children}
-      </MuiThemeProvider>
-    )
+    return <MuiThemeProvider theme={theme}>{this.props.children}</MuiThemeProvider>;
   }
 }
 

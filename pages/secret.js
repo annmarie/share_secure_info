@@ -38,11 +38,13 @@ const SecretComponent = (props) => {
 };
 
 export default function Secret(props) {
-  return (<>
-    <HeaderComponent {...props} />
-    <SecretComponent {...props} />
-    <FooterComponent {...props} />
-  </>);
+  return (
+    <>
+      <HeaderComponent {...props} />
+      <SecretComponent {...props} />
+      <FooterComponent {...props} />
+    </>
+  );
 }
 
 export function getServerSideProps(ctx) {

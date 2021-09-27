@@ -6,12 +6,14 @@ import HeaderComponent from "components/header-component";
 import FooterComponent from "components/footer-component";
 
 export default function Index(props) {
-  return (<>
-    <HeaderComponent {...props} />
-    <FormComponent {...props} />
-    <StepsComponent {...props} />
-    <FooterComponent {...props} />
-  </>);
+  return (
+    <>
+      <HeaderComponent {...props} />
+      <FormComponent {...props} />
+      <StepsComponent {...props} />
+      <FooterComponent {...props} />
+    </>
+  );
 }
 
 export function getServerSideProps(ctx) {
