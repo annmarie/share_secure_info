@@ -1,5 +1,7 @@
 import Head from "next/head";
 import "styles/globals.scss";
+import HeaderComponent from "components/header-component";
+import FooterComponent from "components/footer-component";
 
 function ShareSecureApp({ Component, pageProps }) {
   return (
@@ -7,7 +9,9 @@ function ShareSecureApp({ Component, pageProps }) {
       <Head>
         <title>ShareSecure</title>
       </Head>
+      <HeaderComponent {...pageProps} />
       <Component {...pageProps} />
+      <FooterComponent {...props} />
     </>
   );
 }
