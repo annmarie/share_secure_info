@@ -2,8 +2,7 @@ import Head from "next/head";
 import "styles/globals.scss";
 import HeaderComponent from "components/header-component";
 import FooterComponent from "components/footer-component";
-//import Layout from "components/Layout";
-//<Layout {...pageProps}></Layout>
+import Layout from "components/layout";
 
 function ShareSecureApp({ Component, pageProps }) {
   return (
@@ -11,9 +10,11 @@ function ShareSecureApp({ Component, pageProps }) {
       <Head>
         <title>ShareSecure</title>
       </Head>
-      <HeaderComponent {...pageProps} />
-      <Component {...pageProps} />
-      <FooterComponent {...pageProps} />
+      <Layout {...pageProps}>
+        <HeaderComponent {...pageProps} />
+        <Component {...pageProps} />
+        <FooterComponent {...pageProps} />
+      </Layout>
     </>
   );
 }
