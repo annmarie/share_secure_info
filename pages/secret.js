@@ -3,6 +3,8 @@ import appPageHandler from "middleware/app-page-handler";
 import { useState, useEffect } from "react";
 import ViewSecret from "components/ViewSecret";
 import Message from "components/Message";
+import HeaderComponent from "components/header-component";
+import FooterComponent from "components/footer-component";
 
 const SecretComponent = (props) => {
   const [secretData, setSecretData] = useState("");
@@ -36,7 +38,13 @@ const SecretComponent = (props) => {
 };
 
 export default function Secret(props) {
-  return <SecretComponent {...props} />;
+  return (
+    <>
+      <HeaderComponent {...props} />
+      <SecretComponent {...props} />
+      <FooterComponent {...props} />
+    </>
+  );
 }
 
 export function getServerSideProps(ctx) {
