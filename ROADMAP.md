@@ -9,7 +9,5 @@
 ### TECHNICAL
 * Encrypt secret message redis ids before passing to the user.
 * Randomize the redis key names for data storing.
-* There is an issue in develoment mode where the styles break and you have to restart.
 * Upgrade fetch to axios.
-* HTML page rendering is a mess.  We render the full page in two different fuctions. MUI is not setup correct.
 * Add more tests.
